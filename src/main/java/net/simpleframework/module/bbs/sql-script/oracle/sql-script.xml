@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-script>
+  <version>1.0.0</version>
+  <name>script</name>
+  <description></description>
+  <tran-sql>
+    <![CDATA[
+    	create table sf_bbs_category (
+    		id char(32) not null,
+    		parentid char(32),
+    		name varchar2(32 char) not null,
+    		text varchar2(32 char) not null,
+    		mark number(4) not null,
+    		createdate timestamp not null,
+        userid char(32) not null,
+        lasttopicid char(32),
+        lastpostid char(32),
+        topics number(11) not null,
+        posts number(11) not null,
+        iconclass varchar2(32 char),
+    		description varchar2(256 char),
+        oorder number(11) not null,
+        primary key(id),
+        unique (name),
+        unique (parentid, text)
+    	);
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_bbs_topic (
+        id char(32) not null,
+        categoryid char(32) not null,
+        status number(4) not null,
+        bbstype number(4) not null,
+        topic varchar2(128 char) not null,
+        createdate timestamp not null,
+        userid char(32) not null,
+        posts number(11) not null,
+        recommendation number(11) not null,
+        recommendationdate timestamp,
+        recommendationduration number(11) not null,
+        best number(1) not null,
+        contentmark number(11) not null,
+        lastpostdate timestamp,
+        lastuserid char(32),
+        favorites number(11) not null,
+        views number(11) not null,
+        description varchar2(256 char),
+        content clob not null,
+        oorder number(11) not null,
+        primary key(id)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_bbs_post (
+        id char(32) not null,
+        contentid char(32) not null,
+        replyid char(32),
+        replies number(11) not null,
+        votes number(11) not null,
+        createdate timestamp not null,
+        userid char(32) not null,
+        content clob not null,
+        primary key(id)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_bbs_team (
+        id char(32) not null,
+        ownerid char(32) not null,
+        role varchar2(32 char),
+        createdate timestamp not null,
+        userid char(32) not null,
+        description varchar2(256 char),
+        primary key(id),
+        unique (ownerid, userid, role)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_bbs_user (
+        id char(32) not null,
+        topics number(11) not null,
+        posts number(11) not null,
+        lasttopicid char(32),
+        lastpostid char(32),
+        primary key(id)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_bbs_ask_vote (
+        id char(32) not null,
+        postid char(32) not null,
+        createdate timestamp not null,
+        userid char(32) not null,
+        description varchar2(256 char),
+        primary key(id),
+        unique (postid, userid)
+      );
+    ]]>
+  </tran-sql>
+</sql-script>
