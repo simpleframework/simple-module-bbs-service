@@ -20,13 +20,15 @@ import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.common.coll.ArrayUtils;
 import net.simpleframework.ctx.common.bean.TimePeriod;
-import net.simpleframework.ctx.permission.PermissionUser;
 import net.simpleframework.ctx.task.ExecutorRunnable;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsTopic;
 import net.simpleframework.module.bbs.BbsUserStat;
+import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsTopicService;
+import net.simpleframework.module.common.content.AbstractCategoryBean;
 import net.simpleframework.module.common.content.EContentStatus;
+import net.simpleframework.module.common.content.impl.AbstractContentService;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -35,20 +37,22 @@ import net.simpleframework.module.common.content.EContentStatus;
  *         http://code.google.com/p/simpleframework/
  *         http://www.simpleframework.net
  */
-public class BbsTopicService extends AbstractBbsService<BbsTopic> implements IBbsTopicService {
+public class BbsTopicService extends AbstractContentService<BbsTopic> implements IBbsTopicService,
+		IBbsContextAware {
 
 	static ColumnData[] DEFAULT_ORDER = new ColumnData[] {
 			new ColumnData("recommendation", EOrder.desc),
 			new ColumnData("lastpostdate", EOrder.desc), new ColumnData("createdate", EOrder.desc) };
 
 	@Override
-	public IDataQuery<BbsTopic> queryByParams(final FilterItems params) {
-		return queryByParams(params, DEFAULT_ORDER);
+	protected ColumnData[] getDefaultOrderColumns() {
+		return DEFAULT_ORDER;
 	}
 
 	@Override
-	public IDataQuery<BbsTopic> query(final BbsCategory category, final EContentStatus status,
-			final TimePeriod timePeriod, FilterItems filterItems, final ColumnData... orderColumns) {
+	public IDataQuery<BbsTopic> queryBeans(final AbstractCategoryBean category,
+			final EContentStatus status, final TimePeriod timePeriod, FilterItems filterItems,
+			final ColumnData... orderColumns) {
 		if (filterItems == null) {
 			filterItems = FilterItems.of();
 		}
@@ -66,53 +70,6 @@ public class BbsTopicService extends AbstractBbsService<BbsTopic> implements IBb
 				(orderColumns == null || orderColumns.length == 0) ? DEFAULT_ORDER : orderColumns);
 	}
 
-	@Override
-	public IDataQuery<BbsTopic> query(final BbsCategory category, final EContentStatus status,
-			final TimePeriod timePeriod, final FilterItems filterItems) {
-		return query(category, status, timePeriod, filterItems, DEFAULT_ORDER);
-	}
-
-	@Override
-	public IDataQuery<BbsTopic> queryTopics(final BbsCategory category) {
-		return queryTopics(category, (TimePeriod) null, DEFAULT_ORDER);
-	}
-
-	@Override
-	public IDataQuery<BbsTopic> queryTopics(final BbsCategory category, final TimePeriod timePeriod,
-			final ColumnData... orderColumns) {
-		return query(category, EContentStatus.publish, timePeriod, null, orderColumns);
-	}
-
-	@Override
-	public IDataQuery<BbsTopic> queryRecommendationTopics(final BbsCategory category,
-			final TimePeriod timePeriod) {
-		return query(category, EContentStatus.publish, timePeriod,
-				FilterItems.of(new FilterItem("recommendation", EFilterRelation.gt, 0)));
-	}
-
-	@Override
-	public IDataQuery<BbsTopic> queryMyTopics(final Object user) {
-		return query(
-				null,
-				null,
-				null,
-				FilterItems.of().addEqualItem("userId",
-						(user instanceof PermissionUser) ? ((PermissionUser) user).getId() : user));
-	}
-
-	private String tmpdir;
-
-	protected String getTmpdir() {
-		if (tmpdir == null) {
-			final StringBuilder sb = new StringBuilder();
-			final String fs = File.separator;
-			sb.append(getModuleContext().getContextSettings().getTmpFiledir().getAbsolutePath());
-			sb.append(fs).append("bbs").append(fs);
-			tmpdir = sb.toString();
-		}
-		return tmpdir;
-	}
-
 	BbsTopicLuceneService luceneService;
 
 	@Override
@@ -122,7 +79,7 @@ public class BbsTopicService extends AbstractBbsService<BbsTopic> implements IBb
 
 	@Override
 	public void onInit() throws Exception {
-		luceneService = new BbsTopicLuceneService(new File(getTmpdir() + "index"));
+		luceneService = new BbsTopicLuceneService(new File(context.getTmpdir() + "index"));
 		if (!luceneService.indexExists()) {
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {
 				@Override
@@ -134,16 +91,17 @@ public class BbsTopicService extends AbstractBbsService<BbsTopic> implements IBb
 			});
 		}
 
-		final BbsCategoryService cService = getCategoryService();
-		final BbsUserStatService uService = getUserStatService();
+		final BbsCategoryService cService = (BbsCategoryService) context.getCategoryService();
+		final BbsUserStatService uService = (BbsUserStatService) context.getUserStatService();
 
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> manager,
 					final IParamsValue paramsValue) {
 				super.onBeforeDelete(manager, paramsValue);
-				final BbsPostService pService = getPostService();
-				final BbsAttachmentService aService = getAttachmentService();
+				final BbsPostService pService = (BbsPostService) context.getPostService();
+				final BbsAttachmentService aService = (BbsAttachmentService) context
+						.getAttachmentService();
 				for (final BbsTopic topic : coll(paramsValue)) {
 					final ID id = topic.getId();
 					// 帖子
@@ -160,13 +118,13 @@ public class BbsTopicService extends AbstractBbsService<BbsTopic> implements IBb
 					final BbsTopic topic = (BbsTopic) o;
 					final BbsCategory category = cService.getBean(topic.getCategoryId());
 					if (category != null) {
-						category.setTopics(queryTopics(category).getCount());
+						category.setTopics(queryBeans(category).getCount());
 						category.setLastTopicId(topic.getId());
 						cService.update(new String[] { "topics", "lastTopicId" }, category);
 					}
 
 					final BbsUserStat stat = uService.getUserStat(topic.getUserId());
-					stat.setTopics(queryMyTopics(topic.getUserId()).getCount());
+					stat.setTopics(queryMyBeans(topic.getUserId()).getCount());
 					stat.setLastTopicId(topic.getId());
 					uService.update(new String[] { "topics", "lastTopicId" }, stat);
 				}
@@ -181,12 +139,12 @@ public class BbsTopicService extends AbstractBbsService<BbsTopic> implements IBb
 				for (final BbsTopic topic : coll(paramsValue)) {
 					final BbsCategory category = cService.getBean(topic.getCategoryId());
 					if (category != null) {
-						category.setTopics(queryTopics(category).getCount());
+						category.setTopics(queryBeans(category).getCount());
 						cService.update(new String[] { "topics" }, category);
 					}
 
 					final BbsUserStat stat = uService.getUserStat(topic.getUserId());
-					stat.setTopics(queryMyTopics(topic.getUserId()).getCount());
+					stat.setTopics(queryMyBeans(topic.getUserId()).getCount());
 					uService.update(new String[] { "topics" }, stat);
 
 					// 删除索引

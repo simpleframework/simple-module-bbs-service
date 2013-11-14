@@ -50,7 +50,7 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 			@Override
 			protected void task() throws Exception {
 				final IBbsTopicService tService = getTopicService();
-				final IDataQuery<BbsTopic> dq = tService.queryRecommendationTopics(null, null);
+				final IDataQuery<BbsTopic> dq = tService.queryRecommendationBeans(null, null);
 				BbsTopic topic;
 				LoginUser.setAdmin();
 				while ((topic = dq.next()) != null) {

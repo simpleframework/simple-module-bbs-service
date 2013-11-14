@@ -7,11 +7,13 @@ import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.ctx.common.bean.TimePeriod;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
 import net.simpleframework.module.bbs.BbsTopic;
 import net.simpleframework.module.bbs.BbsUserStat;
 import net.simpleframework.module.bbs.EBbsType;
+import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsPostService;
 
 /**
@@ -21,7 +23,8 @@ import net.simpleframework.module.bbs.IBbsPostService;
  *         http://code.google.com/p/simpleframework/
  *         http://www.simpleframework.net
  */
-public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsPostService {
+public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IBbsPostService,
+		IBbsContextAware {
 
 	private ColumnData[] getOrders(final BbsTopic topic, final boolean asc) {
 		final ColumnData[] orders = topic.getBbsType() == EBbsType.ask ? new ColumnData[] {
@@ -69,9 +72,9 @@ public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsP
 
 	@Override
 	public void onInit() throws Exception {
-		final BbsCategoryService cService = getCategoryService();
-		final BbsTopicService tService = getTopicService();
-		final BbsUserStatService uService = getUserStatService();
+		final BbsCategoryService cService = (BbsCategoryService) context.getCategoryService();
+		final BbsTopicService tService = (BbsTopicService) context.getTopicService();
+		final BbsUserStatService uService = (BbsUserStatService) context.getUserStatService();
 
 		addListener(new DbEntityAdapterEx() {
 			@Override

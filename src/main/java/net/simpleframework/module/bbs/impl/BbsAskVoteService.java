@@ -3,9 +3,11 @@ package net.simpleframework.module.bbs.impl;
 import java.util.Date;
 
 import net.simpleframework.common.ID;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsAskVote;
 import net.simpleframework.module.bbs.BbsPost;
 import net.simpleframework.module.bbs.IBbsAskVoteService;
+import net.simpleframework.module.bbs.IBbsContextAware;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -14,7 +16,8 @@ import net.simpleframework.module.bbs.IBbsAskVoteService;
  *         http://code.google.com/p/simpleframework/
  *         http://www.simpleframework.net
  */
-public class BbsAskVoteService extends AbstractBbsService<BbsAskVote> implements IBbsAskVoteService {
+public class BbsAskVoteService extends AbstractDbBeanService<BbsAskVote> implements
+		IBbsAskVoteService, IBbsContextAware {
 
 	@Override
 	public BbsAskVote getAskVote(final BbsPost post, final Object userId) {
@@ -30,7 +33,7 @@ public class BbsAskVoteService extends AbstractBbsService<BbsAskVote> implements
 		if (vote != null) {
 			delete(vote.getId());
 			post.setVotes(post.getVotes() - 1);
-			getPostService().update(new String[] { "votes" }, post);
+			context.getPostService().update(new String[] { "votes" }, post);
 		}
 	}
 
@@ -46,6 +49,6 @@ public class BbsAskVoteService extends AbstractBbsService<BbsAskVote> implements
 		vote.setDescription(description);
 		insert(vote);
 		post.setVotes(post.getVotes() + 1);
-		getPostService().update(new String[] { "votes" }, post);
+		context.getPostService().update(new String[] { "votes" }, post);
 	}
 }

@@ -4,8 +4,10 @@ import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.common.ID;
 import net.simpleframework.ctx.IModuleRef;
+import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsOrganizationRef;
 import net.simpleframework.module.bbs.BbsUserStat;
+import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsUserStatService;
 
 /**
@@ -15,8 +17,8 @@ import net.simpleframework.module.bbs.IBbsUserStatService;
  *         http://code.google.com/p/simpleframework/
  *         http://www.simpleframework.net
  */
-public class BbsUserStatService extends AbstractBbsService<BbsUserStat> implements
-		IBbsUserStatService {
+public class BbsUserStatService extends AbstractDbBeanService<BbsUserStat> implements
+		IBbsUserStatService, IBbsContextAware {
 
 	@Override
 	public BbsUserStat getUserStat(final ID userId) {
