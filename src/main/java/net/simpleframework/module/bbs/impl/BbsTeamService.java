@@ -12,7 +12,7 @@ import net.simpleframework.module.common.team.impl.AbstractTeamService;
  * Licensed under the Apache License, Version 2.0
  * 
  * @author 陈侃(cknet@126.com, 13910090885)
- *         http://code.google.com/p/simpleframework/
+ *         https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
 public class BbsTeamService extends AbstractTeamService<BbsTeam> implements IBbsTeamService,
