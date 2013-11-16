@@ -6,7 +6,7 @@ import net.simpleframework.ado.FilterItems;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.ctx.common.bean.TimePeriod;
+import net.simpleframework.common.TimePeriod;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;

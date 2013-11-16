@@ -1,7 +1,7 @@
 package net.simpleframework.module.bbs;
 
 import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.ctx.common.bean.TimePeriod;
+import net.simpleframework.common.TimePeriod;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
 /**
