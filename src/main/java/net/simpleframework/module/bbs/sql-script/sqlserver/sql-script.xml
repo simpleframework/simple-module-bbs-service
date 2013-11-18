@@ -33,6 +33,7 @@
         categoryid char(32) not null,
         status smallint not null,
         bbstype smallint not null,
+        askstatus smallint not null,
         topic varchar(128) not null,
         createdate datetime not null,
         userid char(32) not null,
@@ -57,10 +58,12 @@
     <![CDATA[
       create table sf_bbs_post (
         id char(32) not null,
+        parentid char(32),
         contentid char(32) not null,
         replyid char(32),
         replies int not null,
         votes int not null,
+        bestanswer smallint not null,
         createdate datetime not null,
         userid char(32) not null,
         content clob not null,

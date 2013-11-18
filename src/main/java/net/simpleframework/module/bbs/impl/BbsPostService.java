@@ -27,6 +27,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	private ColumnData[] getOrders(final BbsTopic topic, final boolean asc) {
 		final ColumnData[] orders = topic.getBbsType() == EBbsType.ask ? new ColumnData[] {
+				new ColumnData("bestAnswer", EOrder.desc),
 				new ColumnData("votes", asc ? EOrder.asc : EOrder.desc),
 				new ColumnData("createDate", EOrder.desc) } : new ColumnData[] { new ColumnData(
 				"createDate", asc ? EOrder.asc : EOrder.desc) };
@@ -67,6 +68,19 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 		final FilterItems filterItems = FilterItems.of().addEqualItem("contentId", topic.getId())
 				.addEqualItem("userId", userId);
 		return queryByParams(filterItems, getOrders(topic, false));
+	}
+
+	@Override
+	public void doBestAnswer(final BbsPost post) {
+		final IDataQuery<BbsPost> dq = query("contentId=? and bestAnswer=?", post.getContentId(),
+				true);
+		BbsPost _post;
+		while ((_post = dq.next()) != null) {
+			_post.setBestAnswer(false);
+			update(new String[] { "bestAnswer" }, _post);
+		}
+		post.setBestAnswer(true);
+		update(new String[] { "bestAnswer" }, post);
 	}
 
 	@Override

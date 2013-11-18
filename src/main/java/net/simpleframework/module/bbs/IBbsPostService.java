@@ -35,4 +35,11 @@ public interface IBbsPostService extends IDbBeanService<BbsPost> {
 	IDataQuery<BbsPost> queryByReplies(BbsTopic topic, Object replyId);
 
 	IDataQuery<BbsPost> queryByUser(BbsTopic topic, Object userId);
+
+	/**
+	 * 设置最佳答案
+	 * 
+	 * @param post
+	 */
+	void doBestAnswer(BbsPost post);
 }

@@ -7,4 +7,13 @@ package net.simpleframework.module.bbs;
  *         http://www.simpleframework.net
  */
 public enum EAskStatus {
+
+	/* 未解决 */
+	unresolved,
+
+	/* 已解决 */
+	resolved,
+
+	/* 不是问题，无需解决 */
+	noproblem
 }

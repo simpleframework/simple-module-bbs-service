@@ -1,5 +1,6 @@
 package net.simpleframework.module.bbs;
 
+import net.simpleframework.ado.ColumnMeta;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
@@ -11,8 +12,12 @@ import net.simpleframework.module.common.content.AbstractComment;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-@EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityDeleteLogAdapter" })
+@EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
+		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "bestAnswer" })
 public class BbsPost extends AbstractComment {
+
+	/* 多级，一般用在帖子的评论，帖子的parentId为null */
+	private ID parentId;
 
 	/* 回复引用的帖子 */
 	private ID replyId;
@@ -22,6 +27,18 @@ public class BbsPost extends AbstractComment {
 
 	/* 投票的人数(统计) */
 	private int votes;
+
+	/* 最佳答案 */
+	@ColumnMeta(columnText = "#(BbsPost.0)")
+	private boolean bestAnswer;
+
+	public ID getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(final ID parentId) {
+		this.parentId = parentId;
+	}
 
 	public ID getReplyId() {
 		return replyId;
@@ -45,6 +62,14 @@ public class BbsPost extends AbstractComment {
 
 	public void setVotes(final int votes) {
 		this.votes = votes;
+	}
+
+	public boolean isBestAnswer() {
+		return bestAnswer;
+	}
+
+	public void setBestAnswer(final boolean bestAnswer) {
+		this.bestAnswer = bestAnswer;
 	}
 
 	public static DbEntityTable TBL = new DbEntityTable(BbsPost.class, "sf_bbs_post");

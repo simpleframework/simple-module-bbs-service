@@ -25,6 +25,8 @@ public class BbsTopic extends AbstractContentBean {
 	/* 类别 */
 	private EBbsType bbsType;
 
+	private EAskStatus askStatus;
+
 	/* 跟贴数 */
 	private int posts;
 
@@ -58,6 +60,17 @@ public class BbsTopic extends AbstractContentBean {
 
 	public void setBbsType(final EBbsType bbsType) {
 		this.bbsType = bbsType;
+	}
+
+	public EAskStatus getAskStatus() {
+		if (askStatus == null) {
+			askStatus = EAskStatus.unresolved;
+		}
+		return askStatus;
+	}
+
+	public void setAskStatus(final EAskStatus askStatus) {
+		this.askStatus = askStatus;
 	}
 
 	public int getPosts() {
