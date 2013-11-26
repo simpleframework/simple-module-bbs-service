@@ -11,7 +11,7 @@ import static net.simpleframework.common.I18n.$m;
 public enum EBbsType {
 
 	/**
-	 * 交流贴
+	 * 讨论贴
 	 */
 	normal {
 		@Override
