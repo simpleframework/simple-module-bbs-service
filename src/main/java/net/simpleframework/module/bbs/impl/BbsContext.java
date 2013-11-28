@@ -1,18 +1,11 @@
 package net.simpleframework.module.bbs.impl;
 
 import static net.simpleframework.common.I18n.$m;
-
-import java.util.Calendar;
-import java.util.Date;
-
 import net.simpleframework.ado.db.DbEntityTable;
-import net.simpleframework.ado.query.IDataQuery;
-import net.simpleframework.common.Convert;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.ctx.permission.IPermissionConst;
-import net.simpleframework.ctx.permission.LoginUser;
 import net.simpleframework.ctx.task.ExecutorRunnable;
 import net.simpleframework.module.bbs.BbsAskVote;
 import net.simpleframework.module.bbs.BbsCategory;
@@ -28,7 +21,6 @@ import net.simpleframework.module.bbs.IBbsTeamService;
 import net.simpleframework.module.bbs.IBbsTopicService;
 import net.simpleframework.module.bbs.IBbsUserStatService;
 import net.simpleframework.module.common.AbstractCommonModuleContext;
-import net.simpleframework.module.common.DescriptionLocalUtils;
 import net.simpleframework.module.common.content.Attachment;
 import net.simpleframework.module.common.content.AttachmentLob;
 import net.simpleframework.module.common.content.IAttachmentService;
@@ -48,25 +40,7 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 		getTaskExecutor().addScheduledTask(60 * 5, new ExecutorRunnable() {
 			@Override
 			protected void task() throws Exception {
-				final IBbsTopicService tService = getTopicService();
-				final IDataQuery<BbsTopic> dq = tService.queryRecommendationBeans(null, null);
-				BbsTopic topic;
-				LoginUser.setAdmin();
-				while ((topic = dq.next()) != null) {
-					final Date rDate = topic.getRecommendationDate();
-					final int dur = topic.getRecommendationDuration();
-					if (rDate != null && dur > 0) {
-						final Calendar cal = Calendar.getInstance();
-						cal.setTime(rDate);
-						cal.add(Calendar.SECOND, dur);
-						if (cal.getTime().before(new Date())) {
-							topic.setRecommendation(0);
-							DescriptionLocalUtils.set(topic,
-									$m("BbsContext.1", Convert.toDateString(rDate), dur));
-							tService.update(new String[] { "recommendation" }, topic);
-						}
-					}
-				}
+				getTopicService().doUnRecommendationTask();
 			}
 		});
 	}
