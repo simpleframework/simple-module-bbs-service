@@ -182,16 +182,20 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		}
 
 		@Override
-		protected void objectToDocument(final Object object, final LuceneDocument doc)
+		protected boolean objectToDocument(final Object object, final LuceneDocument doc)
 				throws IOException {
-			super.objectToDocument(object, doc);
 			final BbsTopic topic = (BbsTopic) object;
+			if (topic.getStatus() != EContentStatus.publish) {
+				return false;
+			}
+			super.objectToDocument(object, doc);
 			doc.addTextField("topic", topic.getTopic(), false);
 			String content = topic.getDescription();
 			if (!StringUtils.hasText(content)) {
 				content = trimContent(topic.getContent());
 			}
 			doc.addTextField("content", content, false);
+			return true;
 		}
 	}
 }
