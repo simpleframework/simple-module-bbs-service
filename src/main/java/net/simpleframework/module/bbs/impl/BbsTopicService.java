@@ -173,7 +173,8 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 
 		@Override
 		protected Object documentToObject(final LuceneDocument doc, final Class<?> beanClass) {
-			return context.getTopicService().getBean(doc.get("id"));
+			final BbsTopic topic = context.getTopicService().getBean(doc.get("id"));
+			return topic != null && topic.getStatus() == EContentStatus.publish ? topic : null;
 		}
 
 		@Override
@@ -182,20 +183,16 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		}
 
 		@Override
-		protected boolean objectToDocument(final Object object, final LuceneDocument doc)
+		protected void objectToDocument(final Object object, final LuceneDocument doc)
 				throws IOException {
-			final BbsTopic topic = (BbsTopic) object;
-			if (topic.getStatus() != EContentStatus.publish) {
-				return false;
-			}
 			super.objectToDocument(object, doc);
+			final BbsTopic topic = (BbsTopic) object;
 			doc.addTextField("topic", topic.getTopic(), false);
 			String content = topic.getDescription();
 			if (!StringUtils.hasText(content)) {
 				content = trimContent(topic.getContent());
 			}
 			doc.addTextField("content", content, false);
-			return true;
 		}
 	}
 }
