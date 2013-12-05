@@ -1,5 +1,6 @@
 package net.simpleframework.module.bbs;
 
+import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ctx.IModuleContext;
 import net.simpleframework.organization.OrganizationRef;
 
@@ -14,5 +15,7 @@ public class BbsOrganizationRef extends OrganizationRef {
 	@Override
 	public void onInit(final IModuleContext context) throws Exception {
 		super.onInit(context);
+
+		createRole_SystemChart(IBbsContext.ROLE_BBS_MANAGER, $m("BbsOrganizationRef.0"));
 	}
 }
