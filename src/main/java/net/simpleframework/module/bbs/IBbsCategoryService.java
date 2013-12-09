@@ -11,4 +11,12 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  */
 public interface IBbsCategoryService extends IDbBeanService<BbsCategory>,
 		IADOTreeBeanServiceAware<BbsCategory> {
+
+	/**
+	 * 由名称获取类目
+	 * 
+	 * @param name
+	 * @return
+	 */
+	BbsCategory getBeanByName(String name);
 }

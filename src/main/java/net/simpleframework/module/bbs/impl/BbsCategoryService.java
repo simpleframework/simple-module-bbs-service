@@ -1,6 +1,7 @@
 package net.simpleframework.module.bbs.impl;
 
 import net.simpleframework.ado.db.IDbEntityManager;
+import net.simpleframework.common.StringUtils;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.IBbsCategoryService;
@@ -14,6 +15,11 @@ import net.simpleframework.module.bbs.IBbsContextAware;
  */
 public class BbsCategoryService extends AbstractDbBeanService<BbsCategory> implements
 		IBbsCategoryService, IBbsContextAware {
+
+	@Override
+	public BbsCategory getBeanByName(final String name) {
+		return StringUtils.hasText(name) ? getBean("name=?", name) : null;
+	}
 
 	@Override
 	public void onInit() throws Exception {
