@@ -1,7 +1,8 @@
 package net.simpleframework.module.bbs.impl;
 
 import static net.simpleframework.common.I18n.$m;
-import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.ado.IADOManagerFactory;
+import net.simpleframework.ado.db.DbManagerFactory;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
@@ -37,18 +38,18 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 	public void onInit(final IApplicationContext application) throws Exception {
 		super.onInit(application);
 
+		final IADOManagerFactory aFactory = getADOManagerFactory();
+		if (aFactory instanceof DbManagerFactory) {
+			((DbManagerFactory) aFactory).regist(BbsCategory.TBL, BbsTopic.TBL, BbsPost.TBL,
+					BbsTeam.TBL, BbsUserStat.TBL, BbsAskVote.TBL, Attachment.TBL, AttachmentLob.TBL);
+		}
+
 		getTaskExecutor().addScheduledTask(60 * 5, new ExecutorRunnable() {
 			@Override
 			protected void task() throws Exception {
 				getTopicService().doUnRecommendationTask();
 			}
 		});
-	}
-
-	@Override
-	protected DbEntityTable[] getEntityTables() {
-		return new DbEntityTable[] { BbsCategory.TBL, BbsTopic.TBL, BbsPost.TBL, BbsTeam.TBL,
-				BbsUserStat.TBL, BbsAskVote.TBL, Attachment.TBL, AttachmentLob.TBL };
 	}
 
 	@Override
