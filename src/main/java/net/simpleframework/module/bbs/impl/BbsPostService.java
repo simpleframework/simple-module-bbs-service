@@ -12,6 +12,7 @@ import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
 import net.simpleframework.module.bbs.BbsTopic;
 import net.simpleframework.module.bbs.BbsUserStat;
+import net.simpleframework.module.bbs.EAskStatus;
 import net.simpleframework.module.bbs.EBbsType;
 import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsPostService;
@@ -81,6 +82,14 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 		}
 		post.setBestAnswer(true);
 		update(new String[] { "bestAnswer" }, post);
+
+		// 更改topic
+		final BbsTopicService tService = (BbsTopicService) context.getTopicService();
+		final BbsTopic topic = tService.getBean(post.getContentId());
+		if (topic != null) {
+			topic.setAskStatus(EAskStatus.resolved);
+			tService.update(new String[] { "askStatus" }, topic);
+		}
 	}
 
 	@Override
