@@ -1,6 +1,7 @@
 package net.simpleframework.module.bbs;
 
 import net.simpleframework.ado.ColumnMeta;
+import net.simpleframework.ado.bean.ITreeBeanAware;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
@@ -14,9 +15,9 @@ import net.simpleframework.module.common.content.AbstractComment;
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "bestAnswer" })
-public class BbsPost extends AbstractComment {
+public class BbsPost extends AbstractComment implements ITreeBeanAware {
 
-	/* 多级，一般用在帖子的评论，帖子的parentId为null */
+	/* 多级，帖子的评论，帖子的parentId为null */
 	private ID parentId;
 
 	/* 回复引用的帖子 */
@@ -32,10 +33,12 @@ public class BbsPost extends AbstractComment {
 	@ColumnMeta(columnText = "#(BbsPost.0)")
 	private boolean bestAnswer;
 
+	@Override
 	public ID getParentId() {
 		return parentId;
 	}
 
+	@Override
 	public void setParentId(final ID parentId) {
 		this.parentId = parentId;
 	}

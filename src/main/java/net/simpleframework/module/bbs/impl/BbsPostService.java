@@ -5,6 +5,7 @@ import net.simpleframework.ado.EOrder;
 import net.simpleframework.ado.FilterItems;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
+import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.TimePeriod;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
@@ -28,17 +29,16 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	private ColumnData[] getOrders(final BbsTopic topic, final boolean asc) {
 		final ColumnData[] orders = topic.getBbsType() == EBbsType.ask ? new ColumnData[] {
-				new ColumnData("bestAnswer", EOrder.desc),
-				new ColumnData("votes", asc ? EOrder.asc : EOrder.desc),
-				new ColumnData("createDate", EOrder.desc) } : new ColumnData[] { new ColumnData(
-				"createDate", asc ? EOrder.asc : EOrder.desc) };
+				ColumnData.DESC("bestAnswer"), new ColumnData("votes", asc ? EOrder.asc : EOrder.desc),
+				ColumnData.DESC("createDate") } : new ColumnData[] { new ColumnData("createDate",
+				asc ? EOrder.asc : EOrder.desc) };
 		return orders;
 	}
 
 	private IDataQuery<BbsPost> query(final BbsTopic topic, final TimePeriod timePeriod,
 			final boolean asc) {
-		final FilterItems filterItems = FilterItems.of().addEqualItem("contentId", topic.getId())
-				.addEqualItem("createdate", timePeriod);
+		final FilterItems filterItems = FilterItems.of().addEqual("contentId", topic.getId())
+				.addIsNull("parentId").addEqual("createdate", timePeriod);
 		return queryByParams(filterItems, getOrders(topic, asc));
 	}
 
@@ -59,15 +59,15 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	@Override
 	public IDataQuery<BbsPost> queryByReplies(final BbsTopic topic, final Object replyId) {
-		final FilterItems filterItems = FilterItems.of().addEqualItem("contentId", topic.getId())
-				.addEqualItem("replyId", replyId);
+		final FilterItems filterItems = FilterItems.of().addEqual("contentId", topic.getId())
+				.addEqual("replyId", replyId);
 		return queryByParams(filterItems, getOrders(topic, false));
 	}
 
 	@Override
 	public IDataQuery<BbsPost> queryByUser(final BbsTopic topic, final Object userId) {
-		final FilterItems filterItems = FilterItems.of().addEqualItem("contentId", topic.getId())
-				.addEqualItem("userId", userId);
+		final FilterItems filterItems = FilterItems.of().addEqual("contentId", topic.getId())
+				.addEqual("userId", userId);
 		return queryByParams(filterItems, getOrders(topic, false));
 	}
 
@@ -90,6 +90,14 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 			topic.setAskStatus(EAskStatus.resolved);
 			tService.update(new String[] { "askStatus" }, topic);
 		}
+	}
+
+	@Override
+	public IDataQuery<BbsPost> queryChildren(final BbsPost parent, final ColumnData... orderColumns) {
+		if (parent == null) {
+			return DataQueryUtils.nullQuery();
+		}
+		return super.queryChildren(parent, ColumnData.DESC("createDate"));
 	}
 
 	@Override

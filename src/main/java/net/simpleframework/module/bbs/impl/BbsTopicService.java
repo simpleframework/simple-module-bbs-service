@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.EFilterRelation;
-import net.simpleframework.ado.EOrder;
 import net.simpleframework.ado.FilterItem;
 import net.simpleframework.ado.FilterItems;
 import net.simpleframework.ado.IParamsValue;
@@ -39,9 +38,8 @@ import net.simpleframework.module.common.content.impl.AbstractContentService;
 public class BbsTopicService extends AbstractContentService<BbsTopic> implements IBbsTopicService,
 		IBbsContextAware {
 
-	static ColumnData[] DEFAULT_ORDER = new ColumnData[] {
-			new ColumnData("recommendation", EOrder.desc),
-			new ColumnData("lastpostdate", EOrder.desc), new ColumnData("createdate", EOrder.desc) };
+	static ColumnData[] DEFAULT_ORDER = new ColumnData[] { ColumnData.DESC("recommendation"),
+			ColumnData.DESC("lastpostdate"), ColumnData.DESC("createdate") };
 
 	@Override
 	protected ColumnData[] getDefaultOrderColumns() {
@@ -56,10 +54,10 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			filterItems = FilterItems.of();
 		}
 
-		filterItems.addEqualItem("categoryId", category).addEqualItem("createdate", timePeriod);
+		filterItems.addEqual("categoryId", category).addEqual("createdate", timePeriod);
 
 		if (status != null) {
-			filterItems.addEqualItem("status", status);
+			filterItems.addEqual("status", status);
 		} else {
 			filterItems
 					.add(new FilterItem("status", EFilterRelation.not_equal, EContentStatus.delete));

@@ -2,6 +2,7 @@ package net.simpleframework.module.bbs;
 
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.TimePeriod;
+import net.simpleframework.ctx.service.ado.IADOTreeBeanServiceAware;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
 /**
@@ -10,7 +11,7 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public interface IBbsPostService extends IDbBeanService<BbsPost> {
+public interface IBbsPostService extends IDbBeanService<BbsPost>, IADOTreeBeanServiceAware<BbsPost> {
 
 	/**
 	 * 查询指定主题的帖子
