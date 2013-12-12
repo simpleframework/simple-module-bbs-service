@@ -1,5 +1,6 @@
 package net.simpleframework.module.bbs.impl;
 
+import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.EOrder;
 import net.simpleframework.ado.FilterItems;
@@ -8,6 +9,7 @@ import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.TimePeriod;
+import net.simpleframework.ctx.ModuleException;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
@@ -132,6 +134,10 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 					final IParamsValue paramsValue) {
 				super.onBeforeDelete(manager, paramsValue);
 				for (final BbsPost post : coll(paramsValue)) {
+					if (queryChildren(post).getCount() > 0) {
+						throw ModuleException.of($m("BbsPostService.0"));
+					}
+
 					final BbsTopic topic = tService.getBean(post.getContentId());
 					if (topic != null) {
 						topic.setPosts(query(topic).getCount() - 1);
