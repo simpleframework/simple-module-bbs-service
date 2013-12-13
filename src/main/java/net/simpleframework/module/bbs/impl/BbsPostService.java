@@ -9,7 +9,6 @@ import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.TimePeriod;
-import net.simpleframework.ctx.ModuleException;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
@@ -19,6 +18,7 @@ import net.simpleframework.module.bbs.EAskStatus;
 import net.simpleframework.module.bbs.EBbsType;
 import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsPostService;
+import net.simpleframework.module.common.content.ContentException;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -135,7 +135,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 				super.onBeforeDelete(manager, paramsValue);
 				for (final BbsPost post : coll(paramsValue)) {
 					if (queryChildren(post).getCount() > 0) {
-						throw ModuleException.of($m("BbsPostService.0"));
+						throw ContentException.of($m("BbsPostService.0"));
 					}
 
 					final BbsTopic topic = tService.getBean(post.getContentId());
