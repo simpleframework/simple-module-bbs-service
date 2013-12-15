@@ -90,7 +90,7 @@ public class BbsTopic extends AbstractContentBean {
 	}
 
 	public Date getLastPostDate() {
-		return lastPostDate;
+		return lastPostDate != null ? lastPostDate : getCreateDate();
 	}
 
 	public void setLastPostDate(final Date lastPostDate) {

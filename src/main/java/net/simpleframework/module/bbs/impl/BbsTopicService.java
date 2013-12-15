@@ -39,7 +39,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		IBbsContextAware {
 
 	static ColumnData[] DEFAULT_ORDER = new ColumnData[] { ColumnData.DESC("recommendation"),
-			ColumnData.DESC("lastpostdate"), ColumnData.DESC("createdate") };
+			ColumnData.DESC("lastpostdate") };
 
 	@Override
 	protected ColumnData[] getDefaultOrderColumns() {

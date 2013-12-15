@@ -43,7 +43,7 @@
         recommendationduration int not null, 
         best bit not null,
         contentmark int not null,
-        lastpostdate datetime,
+        lastpostdate datetime not null,
         lastuserid char(32),
         favorites int not null,
         views int not null,

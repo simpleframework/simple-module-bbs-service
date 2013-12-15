@@ -43,7 +43,7 @@
         recommendationduration number(11) not null,
         best number(1) not null,
         contentmark number(11) not null,
-        lastpostdate timestamp,
+        lastpostdate timestamp not null,
         lastuserid char(32),
         favorites number(11) not null,
         views number(11) not null,

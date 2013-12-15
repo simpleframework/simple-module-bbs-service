@@ -43,7 +43,7 @@
         recommendationduration int4 not null, 
         best bool not null,
         contentmark int4 not null,
-        lastpostdate timestamp,
+        lastpostdate timestamp not null,
         lastuserid char(32),
         favorites int4 not null,
         views int4 not null,
