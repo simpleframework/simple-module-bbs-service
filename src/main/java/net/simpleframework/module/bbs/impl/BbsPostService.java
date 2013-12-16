@@ -161,7 +161,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 						cService.update(new String[] { "posts", "lastPostId" }, category);
 					}
 
-					final BbsUserStat stat = uService.getUserStat(topic.getUserId());
+					final BbsUserStat stat = uService.getUserStat(post.getUserId());
 					stat.setPosts(count("userId=?", post.getUserId()));
 					stat.setLastPostId(post.getId());
 					uService.update(new String[] { "posts", "lastPostId" }, stat);
