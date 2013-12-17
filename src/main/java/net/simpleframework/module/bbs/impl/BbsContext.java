@@ -1,8 +1,8 @@
 package net.simpleframework.module.bbs.impl;
 
 import static net.simpleframework.common.I18n.$m;
-import net.simpleframework.ado.IADOManagerFactory;
-import net.simpleframework.ado.db.DbManagerFactory;
+import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
@@ -32,17 +32,12 @@ import net.simpleframework.module.common.content.IAttachmentService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext {
+public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext,
+		IDbEntityTableRegistry {
 
 	@Override
 	public void onInit(final IApplicationContext application) throws Exception {
 		super.onInit(application);
-
-		final IADOManagerFactory aFactory = getADOManagerFactory();
-		if (aFactory instanceof DbManagerFactory) {
-			((DbManagerFactory) aFactory).regist(BbsCategory.TBL, BbsTopic.TBL, BbsPost.TBL,
-					BbsTeam.TBL, BbsUserStat.TBL, BbsAskVote.TBL, Attachment.TBL, AttachmentLob.TBL);
-		}
 
 		getTaskExecutor().addScheduledTask(60 * 5, new ExecutorRunnable() {
 			@Override
@@ -50,6 +45,12 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 				getTopicService().doUnRecommendationTask();
 			}
 		});
+	}
+
+	@Override
+	public DbEntityTable[] createEntityTables() {
+		return new DbEntityTable[] { BbsCategory.TBL, BbsTopic.TBL, BbsPost.TBL, BbsTeam.TBL,
+				BbsUserStat.TBL, BbsAskVote.TBL, Attachment.TBL, AttachmentLob.TBL };
 	}
 
 	@Override
