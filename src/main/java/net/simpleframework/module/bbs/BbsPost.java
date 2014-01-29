@@ -2,7 +2,6 @@ package net.simpleframework.module.bbs;
 
 import net.simpleframework.ado.ColumnMeta;
 import net.simpleframework.ado.bean.ITreeBeanAware;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.common.content.AbstractComment;
@@ -74,8 +73,6 @@ public class BbsPost extends AbstractComment implements ITreeBeanAware {
 	public void setBestAnswer(final boolean bestAnswer) {
 		this.bestAnswer = bestAnswer;
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(BbsPost.class, "sf_bbs_post");
 
 	private static final long serialVersionUID = -1147517820464806915L;
 }

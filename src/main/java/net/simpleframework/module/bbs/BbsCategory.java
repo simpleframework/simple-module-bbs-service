@@ -1,6 +1,5 @@
 package net.simpleframework.module.bbs;
 
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
@@ -66,8 +65,6 @@ public class BbsCategory extends AbstractCategoryBean {
 	public void setIconClass(final String iconClass) {
 		this.iconClass = iconClass;
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(BbsCategory.class, "sf_bbs_category");
 
 	private static final long serialVersionUID = -3233077947300876730L;
 }

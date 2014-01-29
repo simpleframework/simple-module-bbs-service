@@ -23,7 +23,6 @@ import net.simpleframework.module.bbs.IBbsTopicService;
 import net.simpleframework.module.bbs.IBbsUserStatService;
 import net.simpleframework.module.common.AbstractCommonModuleContext;
 import net.simpleframework.module.common.content.Attachment;
-import net.simpleframework.module.common.content.AttachmentLob;
 import net.simpleframework.module.common.content.IAttachmentService;
 
 /**
@@ -49,8 +48,13 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 
 	@Override
 	public DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] { BbsCategory.TBL, BbsTopic.TBL, BbsPost.TBL, BbsTeam.TBL,
-				BbsUserStat.TBL, BbsAskVote.TBL, Attachment.TBL, AttachmentLob.TBL };
+		return new DbEntityTable[] { new DbEntityTable(BbsCategory.class, "sf_bbs_category"),
+				new DbEntityTable(BbsTopic.class, "sf_bbs_topic"),
+				new DbEntityTable(BbsPost.class, "sf_bbs_post"),
+				new DbEntityTable(BbsTeam.class, "sf_bbs_team"),
+				new DbEntityTable(BbsUserStat.class, "sf_bbs_user"),
+				new DbEntityTable(BbsAskVote.class, "sf_bbs_ask_vote"), SF_ATTACHMENT,
+				SF_ATTACHMENT_LOB };
 	}
 
 	@Override

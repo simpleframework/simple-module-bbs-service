@@ -2,7 +2,6 @@ package net.simpleframework.module.bbs;
 
 import net.simpleframework.ado.bean.AbstractUserAwareBean;
 import net.simpleframework.ado.bean.IDescriptionBeanAware;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.common.ID;
 
 /**
@@ -34,8 +33,6 @@ public class BbsAskVote extends AbstractUserAwareBean implements IDescriptionBea
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(BbsAskVote.class, "sf_bbs_ask_vote");
 
 	private static final long serialVersionUID = 3847737582791563719L;
 }

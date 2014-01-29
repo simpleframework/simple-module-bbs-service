@@ -1,6 +1,5 @@
 package net.simpleframework.module.bbs;
 
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.module.common.team.Team;
 
 /**
@@ -10,8 +9,6 @@ import net.simpleframework.module.common.team.Team;
  *         http://www.simpleframework.net
  */
 public class BbsTeam extends Team {
-
-	public static final DbEntityTable TBL = new DbEntityTable(BbsTeam.class, "sf_bbs_team");
 
 	private static final long serialVersionUID = 7382297618409365430L;
 

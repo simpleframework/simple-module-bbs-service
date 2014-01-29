@@ -3,7 +3,6 @@ package net.simpleframework.module.bbs;
 import java.util.Date;
 
 import net.simpleframework.ado.ColumnMeta;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.common.content.AbstractContentBean;
@@ -116,8 +115,6 @@ public class BbsTopic extends AbstractContentBean {
 	{
 		setStatus(EContentStatus.publish);
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(BbsTopic.class, "sf_bbs_topic");
 
 	private static final long serialVersionUID = 4367483799292510748L;
 }

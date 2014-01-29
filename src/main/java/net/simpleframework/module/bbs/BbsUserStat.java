@@ -1,7 +1,6 @@
 package net.simpleframework.module.bbs;
 
 import net.simpleframework.ado.bean.AbstractIdBean;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.common.ID;
 
 /**
@@ -52,8 +51,6 @@ public class BbsUserStat extends AbstractIdBean {
 	public void setLastPostId(final ID lastPostId) {
 		this.lastPostId = lastPostId;
 	}
-
-	public static DbEntityTable TBL = new DbEntityTable(BbsUserStat.class, "sf_bbs_user");
 
 	private static final long serialVersionUID = -5682240153954667540L;
 }
