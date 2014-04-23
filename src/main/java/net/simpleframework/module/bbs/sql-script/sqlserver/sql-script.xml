@@ -68,7 +68,7 @@
         bestanswer bit not null,
         createdate datetime not null,
         userid char(32) not null,
-        content clob not null,
+        comment clob not null,
         primary key(id)
       );
     ]]>

@@ -68,7 +68,7 @@
         bestanswer bool not null,
         createdate timestamp not null,
         userid char(32) not null,
-        content text not null,
+        comment text not null,
         primary key(id)
       );
     ]]>
