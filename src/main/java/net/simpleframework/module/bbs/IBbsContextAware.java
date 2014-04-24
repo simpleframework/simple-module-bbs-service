@@ -11,5 +11,5 @@ import net.simpleframework.ctx.ModuleContextFactory;
  */
 public interface IBbsContextAware extends IModuleContextAware {
 
-	static IBbsContext context = ModuleContextFactory.get(IBbsContext.class);
+	static IBbsContext bbsContext = ModuleContextFactory.get(IBbsContext.class);
 }

@@ -76,7 +76,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 
 	@Override
 	public void onInit() throws Exception {
-		luceneService = new BbsTopicLuceneService(new File(context.getTmpdir() + "index"));
+		luceneService = new BbsTopicLuceneService(new File(bbsContext.getTmpdir() + "index"));
 		if (!luceneService.indexExists()) {
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {
 				@Override
@@ -88,16 +88,16 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			});
 		}
 
-		final BbsCategoryService cService = (BbsCategoryService) context.getCategoryService();
-		final BbsUserStatService uService = (BbsUserStatService) context.getUserStatService();
+		final BbsCategoryService cService = (BbsCategoryService) bbsContext.getCategoryService();
+		final BbsUserStatService uService = (BbsUserStatService) bbsContext.getUserStatService();
 
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> manager,
 					final IParamsValue paramsValue) {
 				super.onBeforeDelete(manager, paramsValue);
-				final BbsPostService pService = (BbsPostService) context.getPostService();
-				final BbsAttachmentService aService = (BbsAttachmentService) context
+				final BbsPostService pService = (BbsPostService) bbsContext.getPostService();
+				final BbsAttachmentService aService = (BbsAttachmentService) bbsContext
 						.getAttachmentService();
 				for (final BbsTopic topic : coll(paramsValue)) {
 					final ID id = topic.getId();
@@ -171,13 +171,13 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 
 		@Override
 		protected Object documentToObject(final LuceneDocument doc, final Class<?> beanClass) {
-			final BbsTopic topic = context.getTopicService().getBean(doc.get("id"));
+			final BbsTopic topic = bbsContext.getTopicService().getBean(doc.get("id"));
 			return topic != null && topic.getStatus() == EContentStatus.publish ? topic : null;
 		}
 
 		@Override
 		protected IDataQuery<?> queryAll() {
-			return context.getTopicService().queryAll();
+			return bbsContext.getTopicService().queryAll();
 		}
 
 		@Override

@@ -34,7 +34,7 @@ public class BbsUserStatService extends AbstractDbBeanService<BbsUserStat> imple
 	public void onInit() throws Exception {
 		super.onInit();
 
-		final IModuleRef ref = context.getOrganizationRef();
+		final IModuleRef ref = bbsContext.getOrganizationRef();
 		if (ref != null) {
 			((BbsOrganizationRef) ref).getUserService().addListener(new DbEntityAdapterEx() {
 				@Override

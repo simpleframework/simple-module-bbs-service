@@ -86,7 +86,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 		update(new String[] { "bestAnswer" }, post);
 
 		// 更改topic
-		final BbsTopicService tService = (BbsTopicService) context.getTopicService();
+		final BbsTopicService tService = (BbsTopicService) bbsContext.getTopicService();
 		final BbsTopic topic = tService.getBean(post.getContentId());
 		if (topic != null) {
 			topic.setAskStatus(EAskStatus.resolved);
@@ -104,9 +104,9 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	@Override
 	public void onInit() throws Exception {
-		final BbsCategoryService cService = (BbsCategoryService) context.getCategoryService();
-		final BbsTopicService tService = (BbsTopicService) context.getTopicService();
-		final BbsUserStatService uService = (BbsUserStatService) context.getUserStatService();
+		final BbsCategoryService cService = (BbsCategoryService) bbsContext.getCategoryService();
+		final BbsTopicService tService = (BbsTopicService) bbsContext.getTopicService();
+		final BbsUserStatService uService = (BbsUserStatService) bbsContext.getUserStatService();
 
 		addListener(new DbEntityAdapterEx() {
 			@Override

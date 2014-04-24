@@ -32,7 +32,7 @@ public class BbsAskVoteService extends AbstractDbBeanService<BbsAskVote> impleme
 		if (vote != null) {
 			delete(vote.getId());
 			post.setVotes(post.getVotes() - 1);
-			context.getPostService().update(new String[] { "votes" }, post);
+			bbsContext.getPostService().update(new String[] { "votes" }, post);
 		}
 	}
 
@@ -48,6 +48,6 @@ public class BbsAskVoteService extends AbstractDbBeanService<BbsAskVote> impleme
 		vote.setDescription(description);
 		insert(vote);
 		post.setVotes(post.getVotes() + 1);
-		context.getPostService().update(new String[] { "votes" }, post);
+		bbsContext.getPostService().update(new String[] { "votes" }, post);
 	}
 }
