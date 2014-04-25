@@ -39,7 +39,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	private IDataQuery<BbsPost> query(final BbsTopic topic, final TimePeriod timePeriod,
 			final boolean asc) {
-		final FilterItems filterItems = FilterItems.of().addEqual("contentId", topic.getId())
+		final FilterItems filterItems = FilterItems.of("contentId", topic.getId())
 				.addIsNull("parentId").addEqual("createdate", timePeriod);
 		return queryByParams(filterItems, getOrders(topic, asc));
 	}
@@ -61,15 +61,15 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	@Override
 	public IDataQuery<BbsPost> queryByReplies(final BbsTopic topic, final Object replyId) {
-		final FilterItems filterItems = FilterItems.of().addEqual("contentId", topic.getId())
-				.addEqual("replyId", replyId);
+		final FilterItems filterItems = FilterItems.of("contentId", topic.getId()).addEqual(
+				"replyId", replyId);
 		return queryByParams(filterItems, getOrders(topic, false));
 	}
 
 	@Override
 	public IDataQuery<BbsPost> queryByUser(final BbsTopic topic, final Object userId) {
-		final FilterItems filterItems = FilterItems.of().addEqual("contentId", topic.getId())
-				.addEqual("userId", userId);
+		final FilterItems filterItems = FilterItems.of("contentId", topic.getId()).addEqual("userId",
+				userId);
 		return queryByParams(filterItems, getOrders(topic, false));
 	}
 
