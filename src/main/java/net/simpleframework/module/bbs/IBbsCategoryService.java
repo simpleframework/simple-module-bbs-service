@@ -1,6 +1,6 @@
 package net.simpleframework.module.bbs;
 
-import net.simpleframework.ctx.service.ado.IADOTreeBeanServiceAware;
+import net.simpleframework.ctx.service.ado.ITreeBeanServiceAware;
 import net.simpleframework.ctx.service.ado.db.IDbBeanService;
 
 /**
@@ -10,7 +10,7 @@ import net.simpleframework.ctx.service.ado.db.IDbBeanService;
  *         http://www.simpleframework.net
  */
 public interface IBbsCategoryService extends IDbBeanService<BbsCategory>,
-		IADOTreeBeanServiceAware<BbsCategory> {
+		ITreeBeanServiceAware<BbsCategory> {
 
 	/**
 	 * 由名称获取类目

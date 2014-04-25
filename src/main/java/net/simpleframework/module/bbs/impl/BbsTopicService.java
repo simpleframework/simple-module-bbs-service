@@ -121,7 +121,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 					}
 
 					final BbsUserStat stat = uService.getUserStat(topic.getUserId());
-					stat.setTopics(queryMyBeans(topic.getUserId()).getCount());
+					stat.setTopics(queryByUser(topic.getUserId()).getCount());
 					stat.setLastTopicId(topic.getId());
 					uService.update(new String[] { "topics", "lastTopicId" }, stat);
 				}
@@ -141,7 +141,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 					}
 
 					final BbsUserStat stat = uService.getUserStat(topic.getUserId());
-					stat.setTopics(queryMyBeans(topic.getUserId()).getCount());
+					stat.setTopics(queryByUser(topic.getUserId()).getCount());
 					uService.update(new String[] { "topics" }, stat);
 
 					// 删除索引
