@@ -1,5 +1,8 @@
 package net.simpleframework.module.bbs;
 
+import java.util.Date;
+
+import net.simpleframework.ado.bean.IDateAwareBean;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
@@ -12,19 +15,23 @@ import net.simpleframework.module.common.content.AbstractCategoryBean;
  *         http://www.simpleframework.net
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityDeleteLogAdapter" })
-public class BbsCategory extends AbstractCategoryBean {
+public class BbsCategory extends AbstractCategoryBean implements IDateAwareBean {
 
 	/* 显示图标css */
 	private String iconClass;
 
 	/* 主题数 */
 	private int topics;
-
 	/* 跟贴数 */
 	private int posts;
 
 	/* 最后一次提交的主题、回帖 */
 	private ID lastTopicId, lastPostId;
+
+	/* 创建人 */
+	private ID userId;
+	/* 创建日期 */
+	private Date createDate;
 
 	public int getTopics() {
 		return topics;
@@ -64,6 +71,27 @@ public class BbsCategory extends AbstractCategoryBean {
 
 	public void setIconClass(final String iconClass) {
 		this.iconClass = iconClass;
+	}
+
+	public ID getUserId() {
+		return userId;
+	}
+
+	public void setUserId(final ID userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	public Date getCreateDate() {
+		if (createDate == null) {
+			createDate = new Date();
+		}
+		return createDate;
+	}
+
+	@Override
+	public void setCreateDate(final Date createDate) {
+		this.createDate = createDate;
 	}
 
 	private static final long serialVersionUID = -3233077947300876730L;
