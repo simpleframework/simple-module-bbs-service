@@ -3,6 +3,7 @@ package net.simpleframework.module.bbs;
 import java.util.Date;
 
 import net.simpleframework.ado.bean.IDateAwareBean;
+import net.simpleframework.ado.bean.INameBeanAware;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
@@ -15,7 +16,10 @@ import net.simpleframework.module.common.content.AbstractCategoryBean;
  *         http://www.simpleframework.net
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityDeleteLogAdapter" })
-public class BbsCategory extends AbstractCategoryBean implements IDateAwareBean {
+public class BbsCategory extends AbstractCategoryBean implements INameBeanAware, IDateAwareBean {
+
+	/* 名称或编码，唯一 */
+	private String name;
 
 	/* 显示图标css */
 	private String iconClass;
@@ -32,6 +36,16 @@ public class BbsCategory extends AbstractCategoryBean implements IDateAwareBean 
 	private ID userId;
 	/* 创建日期 */
 	private Date createDate;
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void setName(final String name) {
+		this.name = name;
+	}
 
 	public int getTopics() {
 		return topics;
