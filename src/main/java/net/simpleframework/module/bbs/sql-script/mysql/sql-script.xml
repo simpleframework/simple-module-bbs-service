@@ -21,8 +21,7 @@
         oorder int not null,
         primary key(id),
         unique (name),
-        unique (parentid, text),
-        unique (oorder)
+        unique (parentid, text)
     	);
     ]]>
   </tran-sql>
@@ -50,8 +49,7 @@
         description varchar(256),
         content text not null,
         oorder int not null,
-        primary key(id),
-        unique (oorder)
+        primary key(id)
       );
     ]]>
   </tran-sql>
