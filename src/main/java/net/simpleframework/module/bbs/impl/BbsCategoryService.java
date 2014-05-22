@@ -1,6 +1,5 @@
 package net.simpleframework.module.bbs.impl;
 
-import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
@@ -19,20 +18,5 @@ public class BbsCategoryService extends AbstractDbBeanService<BbsCategory> imple
 	@Override
 	public BbsCategory getBeanByName(final String name) {
 		return StringUtils.hasText(name) ? getBean("name=?", name) : null;
-	}
-
-	@Override
-	public void onInit() throws Exception {
-		addListener(new DbEntityAdapterEx() {
-
-			@Override
-			public void onBeforeUpdate(final IDbEntityManager<?> manager, final String[] columns,
-					final Object[] beans) {
-				super.onBeforeUpdate(manager, columns, beans);
-				for (final Object o : beans) {
-					assertParentId((BbsCategory) o);
-				}
-			}
-		});
 	}
 }
