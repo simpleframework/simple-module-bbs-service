@@ -76,6 +76,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
 		luceneService = new BbsTopicLuceneService(new File(bbsContext.getTmpdir() + "index"));
 		if (!luceneService.indexExists()) {
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {

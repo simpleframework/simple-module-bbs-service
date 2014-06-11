@@ -104,6 +104,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
 		final BbsCategoryService cService = (BbsCategoryService) bbsContext.getCategoryService();
 		final BbsTopicService tService = (BbsTopicService) bbsContext.getTopicService();
 		final BbsUserStatService uService = (BbsUserStatService) bbsContext.getUserStatService();
