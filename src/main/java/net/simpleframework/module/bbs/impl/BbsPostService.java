@@ -157,7 +157,8 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 					final BbsTopic topic = tService.getBean(post.getContentId());
 					BbsCategory category;
 					if (topic != null && (category = cService.getBean(topic.getCategoryId())) != null) {
-						category.setPosts(tService.sum("posts", "categoryId=?", category.getId()));
+						category.setPosts(tService.sum("posts", "categoryId=?", category.getId())
+								.intValue());
 						category.setLastPostId(post.getId());
 						cService.update(new String[] { "posts", "lastPostId" }, category);
 					}
@@ -176,7 +177,8 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 					final BbsTopic topic = tService.getBean(post.getContentId());
 					BbsCategory category;
 					if (topic != null && (category = cService.getBean(topic.getCategoryId())) != null) {
-						category.setPosts(tService.sum("posts", "categoryId=?", category.getId()));
+						category.setPosts(tService.sum("posts", "categoryId=?", category.getId())
+								.intValue());
 						cService.update(new String[] { "posts" }, category);
 					}
 
