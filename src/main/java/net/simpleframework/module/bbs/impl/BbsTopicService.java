@@ -156,8 +156,9 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 				super.onAfterUpdate(manager, columns, beans);
 
 				// 更新索引
-				if (columns == null || columns.length == 0 || ArrayUtils.contains(columns, "topic")
-						|| ArrayUtils.contains(columns, "content")) {
+				if (columns == null || columns.length == 0
+						|| ArrayUtils.contains(columns, "topic", true)
+						|| ArrayUtils.contains(columns, "content", true)) {
 					luceneService.doUpdateIndex(beans);
 				}
 			}
