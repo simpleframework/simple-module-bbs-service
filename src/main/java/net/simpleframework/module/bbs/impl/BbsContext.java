@@ -6,7 +6,6 @@ import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
-import net.simpleframework.ctx.permission.IPermissionConst;
 import net.simpleframework.ctx.task.ExecutorRunnable;
 import net.simpleframework.module.bbs.BbsAskVote;
 import net.simpleframework.module.bbs.BbsCategory;
@@ -55,11 +54,6 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 				new DbEntityTable(BbsUserStat.class, "sf_bbs_user"),
 				new DbEntityTable(BbsAskVote.class, "sf_bbs_ask_vote"), SF_ATTACHMENT,
 				SF_ATTACHMENT_LOB };
-	}
-
-	@Override
-	public String getManagerRole() {
-		return IPermissionConst.ROLE_MANAGER;
 	}
 
 	@Override
