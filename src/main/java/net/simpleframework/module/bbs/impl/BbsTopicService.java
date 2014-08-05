@@ -82,9 +82,9 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {
 				@Override
 				protected void task() throws Exception {
-					log.info($m("BbsTopicService.0"));
+					getLog().info($m("BbsTopicService.0"));
 					luceneService.rebuildIndex();
-					log.info($m("BbsTopicService.1"));
+					getLog().info($m("BbsTopicService.1"));
 				}
 			});
 		}
