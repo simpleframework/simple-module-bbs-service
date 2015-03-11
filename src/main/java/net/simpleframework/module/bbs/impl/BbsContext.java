@@ -32,6 +32,7 @@ import net.simpleframework.module.common.content.IAttachmentService;
  */
 public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext,
 		IDbEntityTableRegistry {
+	public static String ROLE_BBS_MANAGER;
 
 	@Override
 	public void onInit(final IApplicationContext application) throws Exception {

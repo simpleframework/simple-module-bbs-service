@@ -1,8 +1,6 @@
 package net.simpleframework.module.bbs;
 
-import static net.simpleframework.ctx.permission.IPermissionConst.ROLECHART_SYSTEM;
 import net.simpleframework.ctx.IModuleRef;
-import net.simpleframework.ctx.permission.PermissionRole;
 import net.simpleframework.module.common.ICommonModuleContext;
 import net.simpleframework.module.common.content.Attachment;
 import net.simpleframework.module.common.content.IAttachmentService;
@@ -14,8 +12,6 @@ import net.simpleframework.module.common.content.IAttachmentService;
  *         http://www.simpleframework.net
  */
 public interface IBbsContext extends ICommonModuleContext {
-	static final String ROLE_BBS_MANAGER = PermissionRole.toUniqueRolename(ROLECHART_SYSTEM,
-			"bbs_manager");
 
 	static final String MODULE_NAME = "simple-module-bbs";
 
