@@ -4,7 +4,7 @@ import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ctx.IModuleContext;
 import net.simpleframework.module.bbs.impl.BbsContext;
 import net.simpleframework.organization.OrganizationRef;
-import net.simpleframework.organization.RolenameConst;
+import net.simpleframework.organization.RolenameW;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -18,7 +18,7 @@ public class BbsOrganizationRef extends OrganizationRef {
 	public void onInit(final IModuleContext context) throws Exception {
 		super.onInit(context);
 
-		BbsContext.ROLE_BBS_MANAGER = RolenameConst.toUniqueRolename(RolenameConst.ROLECHART_SYSTEM,
+		BbsContext.ROLE_BBS_MANAGER = RolenameW.toUniqueRolename(RolenameW.ROLECHART_SYSTEM,
 				"bbs_manager");
 		createRole_SystemChart(BbsContext.ROLE_BBS_MANAGER, $m("BbsOrganizationRef.0"));
 	}
