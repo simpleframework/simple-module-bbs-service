@@ -18,8 +18,8 @@ public class BbsOrganizationRef extends OrganizationRef {
 	public void onInit(final IModuleContext context) throws Exception {
 		super.onInit(context);
 
-		BbsContext.ROLE_BBS_MANAGER = RolenameW.toUniqueRolename(RolenameW.ROLECHART_SYSTEM,
-				"bbs_manager");
+		BbsContext.ROLE_BBS_MANAGER = RolenameW
+				.toUniqueRolename(RolenameW.ROLECHART_SYSTEM, "bbsmgr");
 		createRole_SystemChart(BbsContext.ROLE_BBS_MANAGER, $m("BbsOrganizationRef.0"));
 	}
 }
