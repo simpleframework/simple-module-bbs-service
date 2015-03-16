@@ -1,8 +1,9 @@
 package net.simpleframework.module.bbs;
 
 import static net.simpleframework.common.I18n.$m;
+import static net.simpleframework.module.bbs.impl.BbsContext.ROLE_BBS_MANAGER;
 import net.simpleframework.ctx.IModuleContext;
-import net.simpleframework.module.bbs.impl.BbsContext;
+import net.simpleframework.organization.ERoleType;
 import net.simpleframework.organization.OrganizationRef;
 import net.simpleframework.organization.RolenameW;
 
@@ -18,8 +19,7 @@ public class BbsOrganizationRef extends OrganizationRef {
 	public void onInit(final IModuleContext context) throws Exception {
 		super.onInit(context);
 
-		BbsContext.ROLE_BBS_MANAGER = RolenameW
-				.toUniqueRolename(RolenameW.ROLECHART_SYSTEM, "bbsmgr");
-		createRole_SystemChart(BbsContext.ROLE_BBS_MANAGER, $m("BbsOrganizationRef.0"));
+		ROLE_BBS_MANAGER = RolenameW.toUniqueRolename(RolenameW.ROLECHART_ORG_DEFAULT, "bbsmgr");
+		RolenameW.registRole("bbsmgr", $m("BbsOrganizationRef.0"), null, ERoleType.normal);
 	}
 }
