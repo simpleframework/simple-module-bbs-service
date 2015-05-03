@@ -52,6 +52,18 @@
       <optional>true</optional>
     </dependency>
     
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-queryparser</artifactId>
+      <version>4.10.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers-smartcn</artifactId>
+      <version>4.10.4</version>
+    </dependency>
+    
     <!-- 测试包 -->
     <dependency>
       <groupId>junit</groupId>
