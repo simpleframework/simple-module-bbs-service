@@ -15,6 +15,7 @@ import net.simpleframework.ado.lucene.AbstractLuceneManager;
 import net.simpleframework.ado.lucene.ILuceneManager;
 import net.simpleframework.ado.lucene.LuceneDocument;
 import net.simpleframework.ado.query.IDataQuery;
+import net.simpleframework.common.BeanUtils;
 import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.common.TimePeriod;
@@ -67,7 +68,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 				(orderColumns == null || orderColumns.length == 0) ? DEFAULT_ORDER : orderColumns);
 	}
 
-	BbsTopicLuceneService luceneService;
+	private BbsTopicLuceneService luceneService;
 
 	@Override
 	public ILuceneManager getLuceneService() {
@@ -77,7 +78,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 	@Override
 	public void onInit() throws Exception {
 		super.onInit();
-		luceneService = new BbsTopicLuceneService(new File(bbsContext.getTmpdir() + "index"));
+		luceneService = new BbsTopicLuceneService();
 		if (!luceneService.indexExists()) {
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {
 				@Override
@@ -164,16 +165,27 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		});
 	}
 
-	static class BbsTopicLuceneService extends AbstractLuceneManager {
+	protected class BbsTopicLuceneService extends AbstractLuceneManager {
 
-		public BbsTopicLuceneService(final File indexPath) {
-			super(indexPath, new String[] { "id", "topic", "content" });
+		public BbsTopicLuceneService() {
+			super(new File(bbsContext.getTmpdir() + "index"));
+		}
+
+		@Override
+		protected String[] getQueryFields() {
+			return new String[] { "id", "topic", "content" };
 		}
 
 		@Override
 		protected Object documentToObject(final LuceneDocument doc, final Class<?> beanClass) {
-			final BbsTopic topic = bbsContext.getTopicService().getBean(doc.get("id"));
-			return topic != null && topic.getStatus() == EContentStatus.publish ? topic : null;
+			Object obj;
+			if (beanClass == null) {
+				obj = super.documentToObject(doc, beanClass);
+			} else {
+				obj = getBean(doc.get("id"));
+			}
+			return (obj != null && BeanUtils.getProperty(obj, "status") == EContentStatus.publish) ? obj
+					: null;
 		}
 
 		@Override
