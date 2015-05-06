@@ -20,8 +20,9 @@
     		description varchar(256),
         oorder int not null,
         primary key(id),
-        unique (name),
-        unique (parentid, text)
+        unique(name),
+        unique(parentid, text),
+        unique(oorder)
     	);
     ]]>
   </tran-sql>
@@ -49,7 +50,8 @@
         description varchar(256),
         content text not null,
         oorder int not null,
-        primary key(id)
+        primary key(id),
+        unique(oorder)
       );
     ]]>
   </tran-sql>
@@ -80,7 +82,7 @@
         userid char(32) not null,
         description varchar(256),
         primary key(id),
-        unique (ownerid, userid, role)
+        unique(ownerid, userid, role)
       );
     ]]>
   </tran-sql>
@@ -105,7 +107,7 @@
         userid char(32) not null,
         description varchar(256),
         primary key(id),
-        unique (postid, userid)
+        unique(postid, userid)
       );
     ]]>
   </tran-sql>
