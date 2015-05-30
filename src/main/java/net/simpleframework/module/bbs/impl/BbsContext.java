@@ -53,8 +53,7 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 				new DbEntityTable(BbsPost.class, "sf_bbs_post"),
 				new DbEntityTable(BbsTeam.class, "sf_bbs_team"),
 				new DbEntityTable(BbsUserStat.class, "sf_bbs_user"),
-				new DbEntityTable(BbsAskVote.class, "sf_bbs_ask_vote"), SF_ATTACHMENT,
-				SF_ATTACHMENT_LOB };
+				new DbEntityTable(BbsAskVote.class, "sf_bbs_ask_vote") };
 	}
 
 	@Override
