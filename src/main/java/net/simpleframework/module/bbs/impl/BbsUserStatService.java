@@ -39,7 +39,7 @@ public class BbsUserStatService extends AbstractDbBeanService<BbsUserStat> imple
 			((BbsOrganizationRef) ref).getUserService().addListener(new DbEntityAdapterEx() {
 				@Override
 				public void onAfterDelete(final IDbEntityManager<?> manager,
-						final IParamsValue paramsValue) {
+						final IParamsValue paramsValue) throws Exception {
 					super.onAfterDelete(manager, paramsValue);
 					// 删除统计状态
 					getEntityManager().delete(paramsValue);

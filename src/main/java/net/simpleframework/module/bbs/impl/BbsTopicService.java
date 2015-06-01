@@ -96,7 +96,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> manager,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 				final BbsPostService pService = (BbsPostService) bbsContext.getPostService();
 				final BbsAttachmentService aService = (BbsAttachmentService) bbsContext
@@ -111,7 +111,8 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			}
 
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans) {
+			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+					throws Exception {
 				super.onAfterInsert(manager, beans);
 				for (final Object o : beans) {
 					final BbsTopic topic = (BbsTopic) o;
@@ -133,7 +134,8 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			}
 
 			@Override
-			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue) {
+			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue)
+					throws Exception {
 				super.onAfterDelete(manager, paramsValue);
 				for (final BbsTopic topic : coll(paramsValue)) {
 					final BbsCategory category = cService.getBean(topic.getCategoryId());
@@ -153,7 +155,7 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 
 			@Override
 			public void onAfterUpdate(final IDbEntityManager<?> manager, final String[] columns,
-					final Object[] beans) {
+					final Object[] beans) throws Exception {
 				super.onAfterUpdate(manager, columns, beans);
 
 				// 更新索引

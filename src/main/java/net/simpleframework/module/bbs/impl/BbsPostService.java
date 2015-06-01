@@ -111,7 +111,8 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 		addListener(new DbEntityAdapterEx() {
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans) {
+			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+					throws Exception {
 				super.onAfterInsert(manager, beans);
 				for (final Object o : beans) {
 					final BbsPost post = (BbsPost) o;
@@ -132,7 +133,7 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> manager,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 				for (final BbsPost post : coll(paramsValue)) {
 					if (queryChildren(post).getCount() > 0) {
@@ -150,7 +151,8 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 
 		addListener(new DbEntityAdapterEx() {
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans) {
+			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+					throws Exception {
 				super.onAfterInsert(manager, beans);
 				for (final Object o : beans) {
 					final BbsPost post = (BbsPost) o;
@@ -171,7 +173,8 @@ public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IB
 			}
 
 			@Override
-			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue) {
+			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue)
+					throws Exception {
 				super.onAfterDelete(manager, paramsValue);
 				for (final BbsPost post : coll(paramsValue)) {
 					final BbsTopic topic = tService.getBean(post.getContentId());
