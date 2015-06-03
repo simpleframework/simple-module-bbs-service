@@ -5,7 +5,7 @@ import java.util.Date;
 import net.simpleframework.ado.ColumnMeta;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
-import net.simpleframework.module.common.content.AbstractContentBean;
+import net.simpleframework.module.common.content.AbstractRecommendContentBean;
 import net.simpleframework.module.common.content.EContentStatus;
 
 /**
@@ -17,7 +17,7 @@ import net.simpleframework.module.common.content.EContentStatus;
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "topic", "status",
 		"bbsType", "best", "recommendation", "recommendationDuration" })
-public class BbsTopic extends AbstractContentBean {
+public class BbsTopic extends AbstractRecommendContentBean {
 	/* 类目id */
 	private ID categoryId;
 

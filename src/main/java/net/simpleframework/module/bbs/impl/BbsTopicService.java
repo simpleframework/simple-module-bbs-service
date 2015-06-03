@@ -28,7 +28,7 @@ import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsTopicService;
 import net.simpleframework.module.common.content.AbstractCategoryBean;
 import net.simpleframework.module.common.content.EContentStatus;
-import net.simpleframework.module.common.content.impl.AbstractContentService;
+import net.simpleframework.module.common.content.impl.AbstractRecommendContentService;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -36,8 +36,8 @@ import net.simpleframework.module.common.content.impl.AbstractContentService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsTopicService extends AbstractContentService<BbsTopic> implements IBbsTopicService,
-		IBbsContextAware {
+public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> implements
+		IBbsTopicService, IBbsContextAware {
 
 	static ColumnData[] DEFAULT_ORDER = new ColumnData[] { ColumnData.DESC("recommendation"),
 			ColumnData.DESC("lastpostdate") };
