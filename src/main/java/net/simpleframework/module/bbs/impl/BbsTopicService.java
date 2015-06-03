@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.IOException;
 
 import net.simpleframework.ado.ColumnData;
-import net.simpleframework.ado.EFilterRelation;
-import net.simpleframework.ado.FilterItem;
 import net.simpleframework.ado.FilterItems;
 import net.simpleframework.ado.IParamsValue;
 import net.simpleframework.ado.db.IDbEntityManager;
@@ -60,8 +58,7 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 		if (status != null) {
 			filterItems.addEqual("status", status);
 		} else {
-			filterItems
-					.add(new FilterItem("status", EFilterRelation.not_equal, EContentStatus.delete));
+			filterItems.addNotEqual("status", EContentStatus.delete);
 		}
 
 		return queryByParams(filterItems,
