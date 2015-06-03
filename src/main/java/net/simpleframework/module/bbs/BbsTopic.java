@@ -26,19 +26,17 @@ public class BbsTopic extends AbstractRecommendContentBean {
 
 	private EAskStatus askStatus;
 
-	/* 跟贴数 */
-	private int posts;
-
 	/* 精华贴 */
 	@ColumnMeta(columnText = "#(AbstractContentBean.2)")
 	private boolean best;
 
 	/* 最后提交时间, 排序字段 */
 	private Date lastPostDate;
-
 	/* 最后提交人,统计数据 */
 	private ID lastUserId;
 
+	/* 跟贴数 */
+	private int posts;
 	/* 收藏,统计数据 */
 	private int favorites;
 
