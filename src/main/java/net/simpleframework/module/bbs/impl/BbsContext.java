@@ -3,10 +3,8 @@ package net.simpleframework.module.bbs.impl;
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.IDbEntityTableRegistry;
-import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
-import net.simpleframework.ctx.task.ExecutorRunnable;
 import net.simpleframework.module.bbs.BbsAskVote;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
@@ -33,18 +31,6 @@ import net.simpleframework.module.common.content.IAttachmentService;
 public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext,
 		IDbEntityTableRegistry {
 	public static String ROLE_BBS_MANAGER;
-
-	@Override
-	public void onInit(final IApplicationContext application) throws Exception {
-		super.onInit(application);
-
-		getTaskExecutor().addScheduledTask(60 * 5, new ExecutorRunnable() {
-			@Override
-			protected void task() throws Exception {
-				getTopicService().doUnRecommendationTask();
-			}
-		});
-	}
 
 	@Override
 	public DbEntityTable[] createEntityTables() {

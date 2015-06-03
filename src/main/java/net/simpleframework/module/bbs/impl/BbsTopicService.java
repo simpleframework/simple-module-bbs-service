@@ -53,7 +53,12 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 			filterItems = FilterItems.of();
 		}
 
-		filterItems.addEqual("categoryId", category).addEqual("createdate", timePeriod);
+		if (category != null) {
+			filterItems.addEqual("categoryId", category);
+		}
+		if (timePeriod != null) {
+			filterItems.addEqual("createdate", timePeriod);
+		}
 
 		if (status != null) {
 			filterItems.addEqual("status", status);
@@ -75,6 +80,7 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 	@Override
 	public void onInit() throws Exception {
 		super.onInit();
+
 		luceneService = new BbsTopicLuceneService();
 		if (!luceneService.indexExists()) {
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {
