@@ -4,6 +4,7 @@ import static net.simpleframework.common.I18n.$m;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 import net.simpleframework.ado.ColumnData;
 import net.simpleframework.ado.FilterItems;
@@ -85,7 +86,7 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 		if (!luceneService.indexExists()) {
 			getModuleContext().getTaskExecutor().execute(new ExecutorRunnable() {
 				@Override
-				protected void task() throws Exception {
+				protected void task(final Map<String, Object> cache) throws Exception {
 					getLog().info($m("BbsTopicService.0"));
 					luceneService.rebuildIndex();
 					getLog().info($m("BbsTopicService.1"));
