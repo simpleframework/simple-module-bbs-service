@@ -1,10 +1,8 @@
 package net.simpleframework.module.bbs.impl;
 
 import net.simpleframework.common.StringUtils;
-import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.IBbsCategoryService;
-import net.simpleframework.module.bbs.IBbsContextAware;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -12,8 +10,8 @@ import net.simpleframework.module.bbs.IBbsContextAware;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsCategoryService extends AbstractDbBeanService<BbsCategory> implements
-		IBbsCategoryService, IBbsContextAware {
+public class BbsCategoryService extends AbstractBbsService<BbsCategory> implements
+		IBbsCategoryService {
 
 	@Override
 	public BbsCategory getBeanByName(final String name) {

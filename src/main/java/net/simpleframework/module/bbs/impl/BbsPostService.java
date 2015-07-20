@@ -9,14 +9,12 @@ import net.simpleframework.ado.db.IDbEntityManager;
 import net.simpleframework.ado.query.DataQueryUtils;
 import net.simpleframework.ado.query.IDataQuery;
 import net.simpleframework.common.TimePeriod;
-import net.simpleframework.ctx.service.ado.db.AbstractDbBeanService;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
 import net.simpleframework.module.bbs.BbsTopic;
 import net.simpleframework.module.bbs.BbsUserStat;
 import net.simpleframework.module.bbs.EAskStatus;
 import net.simpleframework.module.bbs.EBbsType;
-import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsPostService;
 import net.simpleframework.module.common.content.ContentException;
 
@@ -26,8 +24,7 @@ import net.simpleframework.module.common.content.ContentException;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsPostService extends AbstractDbBeanService<BbsPost> implements IBbsPostService,
-		IBbsContextAware {
+public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsPostService {
 
 	private ColumnData[] getOrders(final BbsTopic topic, final boolean asc) {
 		final ColumnData[] orders = topic.getBbsType() == EBbsType.ask ? new ColumnData[] {
