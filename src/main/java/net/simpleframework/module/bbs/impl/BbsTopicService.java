@@ -97,15 +97,15 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 		final BbsCategoryService cService = (BbsCategoryService) bbsContext.getCategoryService();
 		final BbsUserStatService uService = (BbsUserStatService) bbsContext.getUserStatService();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<BbsTopic>() {
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> manager,
+			public void onBeforeDelete(final IDbEntityManager<BbsTopic> manager,
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
 				final BbsPostService pService = (BbsPostService) bbsContext.getPostService();
 				final BbsAttachmentService aService = (BbsAttachmentService) bbsContext
 						.getAttachmentService();
-				for (final BbsTopic topic : coll(paramsValue)) {
+				for (final BbsTopic topic : coll(manager, paramsValue)) {
 					final ID id = topic.getId();
 					// 帖子
 					pService.deleteWith("contentId=?", id);
@@ -115,11 +115,10 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 			}
 
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+			public void onAfterInsert(final IDbEntityManager<BbsTopic> manager, final BbsTopic[] beans)
 					throws Exception {
 				super.onAfterInsert(manager, beans);
-				for (final Object o : beans) {
-					final BbsTopic topic = (BbsTopic) o;
+				for (final BbsTopic topic : beans) {
 					final BbsCategory category = cService.getBean(topic.getCategoryId());
 					if (category != null) {
 						category.setTopics(queryBeans(category).getCount());
@@ -134,14 +133,14 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 				}
 
 				// 添加索引
-				luceneService.doAddIndex(beans);
+				luceneService.doAddIndex((Object[]) beans);
 			}
 
 			@Override
-			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue)
-					throws Exception {
+			public void onAfterDelete(final IDbEntityManager<BbsTopic> manager,
+					final IParamsValue paramsValue) throws Exception {
 				super.onAfterDelete(manager, paramsValue);
-				for (final BbsTopic topic : coll(paramsValue)) {
+				for (final BbsTopic topic : coll(manager, paramsValue)) {
 					final BbsCategory category = cService.getBean(topic.getCategoryId());
 					if (category != null) {
 						category.setTopics(queryBeans(category).getCount());
@@ -158,14 +157,14 @@ public class BbsTopicService extends AbstractRecommendContentService<BbsTopic> i
 			}
 
 			@Override
-			public void onAfterUpdate(final IDbEntityManager<?> manager, final String[] columns,
-					final Object[] beans) throws Exception {
+			public void onAfterUpdate(final IDbEntityManager<BbsTopic> manager,
+					final String[] columns, final BbsTopic[] beans) throws Exception {
 				super.onAfterUpdate(manager, columns, beans);
 
 				// 更新索引
 				if (ArrayUtils.isEmpty(columns) || ArrayUtils.contains(columns, "topic", true)
 						|| ArrayUtils.contains(columns, "content", true)) {
-					luceneService.doUpdateIndex(beans);
+					luceneService.doUpdateIndex((Object[]) beans);
 				}
 			}
 		});

@@ -106,13 +106,12 @@ public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsP
 		final BbsTopicService tService = (BbsTopicService) bbsContext.getTopicService();
 		final BbsUserStatService uService = (BbsUserStatService) bbsContext.getUserStatService();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<BbsPost>() {
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+			public void onAfterInsert(final IDbEntityManager<BbsPost> manager, final BbsPost[] beans)
 					throws Exception {
 				super.onAfterInsert(manager, beans);
-				for (final Object o : beans) {
-					final BbsPost post = (BbsPost) o;
+				for (final BbsPost post : beans) {
 					final BbsTopic topic = tService.getBean(post.getContentId());
 					if (topic != null) {
 						topic.setPosts(query(topic).getCount());
@@ -129,10 +128,10 @@ public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsP
 			}
 
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> manager,
+			public void onBeforeDelete(final IDbEntityManager<BbsPost> manager,
 					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(manager, paramsValue);
-				for (final BbsPost post : coll(paramsValue)) {
+				for (final BbsPost post : coll(manager, paramsValue)) {
 					if (queryChildren(post).getCount() > 0) {
 						throw ContentException.of($m("BbsPostService.0"));
 					}
@@ -146,13 +145,12 @@ public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsP
 			}
 		});
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<BbsPost>() {
 			@Override
-			public void onAfterInsert(final IDbEntityManager<?> manager, final Object[] beans)
+			public void onAfterInsert(final IDbEntityManager<BbsPost> manager, final BbsPost[] beans)
 					throws Exception {
 				super.onAfterInsert(manager, beans);
-				for (final Object o : beans) {
-					final BbsPost post = (BbsPost) o;
+				for (final BbsPost post : beans) {
 					final BbsTopic topic = tService.getBean(post.getContentId());
 					BbsCategory category;
 					if (topic != null && (category = cService.getBean(topic.getCategoryId())) != null) {
@@ -170,10 +168,10 @@ public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsP
 			}
 
 			@Override
-			public void onAfterDelete(final IDbEntityManager<?> manager, final IParamsValue paramsValue)
-					throws Exception {
+			public void onAfterDelete(final IDbEntityManager<BbsPost> manager,
+					final IParamsValue paramsValue) throws Exception {
 				super.onAfterDelete(manager, paramsValue);
-				for (final BbsPost post : coll(paramsValue)) {
+				for (final BbsPost post : coll(manager, paramsValue)) {
 					final BbsTopic topic = tService.getBean(post.getContentId());
 					BbsCategory category;
 					if (topic != null && (category = cService.getBean(topic.getCategoryId())) != null) {

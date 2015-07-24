@@ -7,6 +7,7 @@ import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.module.bbs.BbsOrganizationRef;
 import net.simpleframework.module.bbs.BbsUserStat;
 import net.simpleframework.module.bbs.IBbsUserStatService;
+import net.simpleframework.organization.User;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -34,9 +35,9 @@ public class BbsUserStatService extends AbstractBbsService<BbsUserStat> implemen
 
 		final IModuleRef ref = bbsContext.getOrganizationRef();
 		if (ref != null) {
-			((BbsOrganizationRef) ref).getUserService().addListener(new DbEntityAdapterEx() {
+			((BbsOrganizationRef) ref).getUserService().addListener(new DbEntityAdapterEx<User>() {
 				@Override
-				public void onAfterDelete(final IDbEntityManager<?> manager,
+				public void onAfterDelete(final IDbEntityManager<User> manager,
 						final IParamsValue paramsValue) throws Exception {
 					super.onAfterDelete(manager, paramsValue);
 					// 删除统计状态
