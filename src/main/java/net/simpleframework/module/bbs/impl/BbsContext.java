@@ -2,7 +2,6 @@ package net.simpleframework.module.bbs.impl;
 
 import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.db.DbEntityTable;
-import net.simpleframework.ado.db.IDbEntityTableRegistry;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.bbs.BbsAskVote;
@@ -28,12 +27,11 @@ import net.simpleframework.module.common.content.IAttachmentService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext,
-		IDbEntityTableRegistry {
+public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext {
 	public static String ROLE_BBS_MANAGER;
 
 	@Override
-	public DbEntityTable[] createEntityTables() {
+	protected DbEntityTable[] createEntityTables() {
 		return new DbEntityTable[] { new DbEntityTable(BbsCategory.class, "sf_bbs_category"),
 				new DbEntityTable(BbsTopic.class, "sf_bbs_topic"),
 				new DbEntityTable(BbsPost.class, "sf_bbs_post"),
