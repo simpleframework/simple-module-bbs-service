@@ -36,8 +36,11 @@ public class BbsPostService extends AbstractBbsService<BbsPost> implements IBbsP
 
 	private IDataQuery<BbsPost> query(final BbsTopic topic, final TimePeriod timePeriod,
 			final boolean asc) {
-		final FilterItems filterItems = FilterItems.of("contentId", topic.getId())
-				.addIsNull("parentId").addEqual("createdate", timePeriod);
+		final FilterItems filterItems = FilterItems.of("contentId", topic.getId()).addIsNull(
+				"parentId");
+		if (timePeriod != null) {
+			filterItems.addEqual("createdate", timePeriod);
+		}
 		return queryByParams(filterItems, getOrders(topic, asc));
 	}
 
