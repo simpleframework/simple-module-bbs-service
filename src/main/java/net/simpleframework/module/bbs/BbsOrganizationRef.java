@@ -3,9 +3,9 @@ package net.simpleframework.module.bbs;
 import static net.simpleframework.common.I18n.$m;
 import static net.simpleframework.module.bbs.impl.BbsContext.ROLE_BBS_MANAGER;
 import net.simpleframework.ctx.IModuleContext;
-import net.simpleframework.organization.ERoleType;
 import net.simpleframework.organization.OrganizationRef;
-import net.simpleframework.organization.RolenameW;
+import net.simpleframework.organization.Role.ERoleType;
+import net.simpleframework.organization.role.RolenameW;
 
 /**
  * Licensed under the Apache License, Version 2.0
