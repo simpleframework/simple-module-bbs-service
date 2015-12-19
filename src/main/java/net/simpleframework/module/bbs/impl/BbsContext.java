@@ -28,7 +28,6 @@ import net.simpleframework.module.common.content.IAttachmentService;
  *         http://www.simpleframework.net
  */
 public abstract class BbsContext extends AbstractCommonModuleContext implements IBbsContext {
-	public static String ROLE_BBS_MANAGER;
 
 	@Override
 	protected DbEntityTable[] createEntityTables() {
@@ -82,11 +81,6 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 
 	@Override
 	protected Module createModule() {
-		return new Module() {
-			@Override
-			public String getManagerRole() {
-				return ROLE_BBS_MANAGER;
-			};
-		}.setName(MODULE_NAME).setText($m("BbsContext.0")).setOrder(33);
+		return new Module().setName(MODULE_NAME).setText($m("BbsContext.0")).setOrder(33);
 	}
 }
