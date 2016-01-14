@@ -39,7 +39,7 @@ public class BbsCategory extends AbstractCategoryBean implements INameBeanAware,
 
 	@Override
 	public String getName() {
-		return name;
+		return name != null ? name.trim() : null;
 	}
 
 	@Override
