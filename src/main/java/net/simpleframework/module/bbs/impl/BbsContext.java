@@ -4,6 +4,7 @@ import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;
+import net.simpleframework.ctx.ModuleRefUtils;
 import net.simpleframework.module.bbs.BbsAskVote;
 import net.simpleframework.module.bbs.BbsCategory;
 import net.simpleframework.module.bbs.BbsPost;
@@ -76,7 +77,7 @@ public abstract class BbsContext extends AbstractCommonModuleContext implements 
 
 	@Override
 	public IModuleRef getOrganizationRef() {
-		return getRef("net.simpleframework.module.bbs.BbsOrganizationRef");
+		return ModuleRefUtils.getRef("net.simpleframework.module.bbs.BbsOrganizationRef");
 	}
 
 	@Override

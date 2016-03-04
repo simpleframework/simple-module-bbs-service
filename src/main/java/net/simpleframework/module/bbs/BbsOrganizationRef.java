@@ -1,6 +1,6 @@
 package net.simpleframework.module.bbs;
 
-import net.simpleframework.ctx.IModuleContext;
+import net.simpleframework.ctx.IContextBase;
 import net.simpleframework.organization.OrganizationRef;
 
 /**
@@ -12,7 +12,7 @@ import net.simpleframework.organization.OrganizationRef;
 public class BbsOrganizationRef extends OrganizationRef {
 
 	@Override
-	public void onInit(final IModuleContext context) throws Exception {
+	public void onInit(final IContextBase context) throws Exception {
 		super.onInit(context);
 	}
 }
