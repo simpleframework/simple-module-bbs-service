@@ -7,7 +7,7 @@ import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.module.bbs.BbsOrganizationRef;
 import net.simpleframework.module.bbs.BbsUserStat;
 import net.simpleframework.module.bbs.IBbsUserStatService;
-import net.simpleframework.organization.User;
+import net.simpleframework.organization.bean.User;
 
 /**
  * Licensed under the Apache License, Version 2.0
