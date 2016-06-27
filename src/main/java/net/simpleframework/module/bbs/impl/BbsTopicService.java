@@ -32,7 +32,7 @@ import net.simpleframework.module.bbs.BbsUserStat;
 import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsTopicService;
 import net.simpleframework.module.common.content.AbstractCategoryBean;
-import net.simpleframework.module.common.content.EContentStatus;
+import net.simpleframework.module.common.content.AbstractContentBean.EContentStatus;
 import net.simpleframework.module.common.content.impl.AbstractContentService;
 import net.simpleframework.module.common.log.LdescVal;
 
