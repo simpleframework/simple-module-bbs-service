@@ -5,7 +5,6 @@ import java.util.Date;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 import net.simpleframework.module.common.content.AbstractContentBean;
-import net.simpleframework.module.common.content.EContentStatus;
 
 /**
  * Licensed under the Apache License, Version 2.0

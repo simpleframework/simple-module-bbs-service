@@ -32,7 +32,7 @@ import net.simpleframework.module.bbs.BbsUserStat;
 import net.simpleframework.module.bbs.IBbsContextAware;
 import net.simpleframework.module.bbs.IBbsTopicService;
 import net.simpleframework.module.common.content.AbstractCategoryBean;
-import net.simpleframework.module.common.content.EContentStatus;
+import net.simpleframework.module.common.content.AbstractContentBean.EContentStatus;
 import net.simpleframework.module.common.content.impl.AbstractContentService;
 import net.simpleframework.module.common.log.LdescVal;
 
@@ -43,8 +43,8 @@ import net.simpleframework.module.common.log.LdescVal;
  *         https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsTopicService extends AbstractContentService<BbsTopic> implements IBbsTopicService,
-		IBbsContextAware {
+public class BbsTopicService extends AbstractContentService<BbsTopic>
+		implements IBbsTopicService, IBbsContextAware {
 
 	static ColumnData[] DEFAULT_ORDER = new ColumnData[] { ColumnData.DESC("recommendation"),
 			ColumnData.DESC("lastpostdate") };
@@ -213,8 +213,8 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			}
 
 			@Override
-			public void onAfterUpdate(final IDbEntityManager<BbsTopic> manager,
-					final String[] columns, final BbsTopic[] beans) throws Exception {
+			public void onAfterUpdate(final IDbEntityManager<BbsTopic> manager, final String[] columns,
+					final BbsTopic[] beans) throws Exception {
 				super.onAfterUpdate(manager, columns, beans);
 
 				// 更新索引
@@ -226,10 +226,14 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		});
 	}
 
+	protected File getIndexDir() {
+		return getApplicationContext().getContextSettings().getHomeFile("/index/bbs/");
+	}
+
 	protected class BbsTopicLuceneService extends AbstractLuceneManager {
 
 		public BbsTopicLuceneService() {
-			super(new File(bbsContext.getTmpdir() + "index"));
+			super(getIndexDir());
 		}
 
 		@Override
@@ -245,8 +249,8 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 			} else {
 				obj = getBean(doc.get("id"));
 			}
-			return (obj != null && BeanUtils.getProperty(obj, "status") == EContentStatus.publish) ? obj
-					: null;
+			return (obj != null && BeanUtils.getProperty(obj, "status") == EContentStatus.publish)
+					? obj : null;
 		}
 
 		@Override
