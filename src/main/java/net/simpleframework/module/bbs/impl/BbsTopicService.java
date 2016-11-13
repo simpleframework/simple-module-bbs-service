@@ -226,10 +226,14 @@ public class BbsTopicService extends AbstractContentService<BbsTopic> implements
 		});
 	}
 
+	protected File getIndexDir() {
+		return getApplicationContext().getContextSettings().getHomeFile("/index/bbs/");
+	}
+
 	protected class BbsTopicLuceneService extends AbstractLuceneManager {
 
 		public BbsTopicLuceneService() {
-			super(new File(bbsContext.getTmpdir() + "index"));
+			super(getIndexDir());
 		}
 
 		@Override
