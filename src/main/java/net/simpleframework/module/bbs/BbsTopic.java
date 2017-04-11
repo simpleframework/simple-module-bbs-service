@@ -14,7 +14,7 @@ import net.simpleframework.module.common.content.AbstractContentBean;
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityUpdateLogAdapter",
 		"net.simpleframework.module.log.EntityDeleteLogAdapter" }, columns = { "topic", "status",
-		"bbsType", "best", "recommendation", "recommendationDuration" })
+				"bbsType", "best", "recommendation", "recommendationDuration" })
 public class BbsTopic extends AbstractContentBean {
 	/* 类目id */
 	private ID categoryId;

@@ -1,6 +1,7 @@
 package net.simpleframework.module.bbs.impl;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ctx.IModuleRef;
 import net.simpleframework.ctx.Module;

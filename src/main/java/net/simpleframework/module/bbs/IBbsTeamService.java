@@ -1,6 +1,7 @@
 package net.simpleframework.module.bbs;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ctx.permission.PermissionUser;
 import net.simpleframework.module.common.team.ITeamService;
 import net.simpleframework.module.common.team.TeamRole;

@@ -10,6 +10,6 @@ import net.simpleframework.module.common.content.impl.AbstractAttachmentService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsAttachmentService extends AbstractAttachmentService<Attachment> implements
-		IBbsContextAware {
+public class BbsAttachmentService extends AbstractAttachmentService<Attachment>
+		implements IBbsContextAware {
 }

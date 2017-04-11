@@ -15,8 +15,8 @@ import net.simpleframework.organization.bean.User;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsUserStatService extends AbstractBbsService<BbsUserStat> implements
-		IBbsUserStatService {
+public class BbsUserStatService extends AbstractBbsService<BbsUserStat>
+		implements IBbsUserStatService {
 
 	@Override
 	public BbsUserStat getUserStat(final ID userId) {

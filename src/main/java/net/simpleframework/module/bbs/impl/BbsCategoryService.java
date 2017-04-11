@@ -10,8 +10,8 @@ import net.simpleframework.module.bbs.IBbsCategoryService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsCategoryService extends AbstractBbsService<BbsCategory> implements
-		IBbsCategoryService {
+public class BbsCategoryService extends AbstractBbsService<BbsCategory>
+		implements IBbsCategoryService {
 
 	@Override
 	public BbsCategory getBeanByName(final String name) {

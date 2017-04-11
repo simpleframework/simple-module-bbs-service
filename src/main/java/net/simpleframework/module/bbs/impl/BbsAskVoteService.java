@@ -13,7 +13,8 @@ import net.simpleframework.module.bbs.IBbsAskVoteService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class BbsAskVoteService extends AbstractBbsService<BbsAskVote> implements IBbsAskVoteService {
+public class BbsAskVoteService extends AbstractBbsService<BbsAskVote>
+		implements IBbsAskVoteService {
 
 	@Override
 	public BbsAskVote getAskVote(final BbsPost post, final Object userId) {
