@@ -1,0 +1,694 @@
+/***************************************************/
+/*                   category                      */
+/***************************************************/
+.BbsCategoryTPage {
+  border: 1px solid #ccc;
+  border-bottom: 0;
+}
+
+.BbsCategoryTPage .c_title {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  background-color: #F9F9F9;
+  color: #870;
+  font-size: 11.5pt;
+  font-style: italic;
+}
+
+.BbsCategoryTPage .c_title img {
+  float: right;
+  margin-top: 5px;
+}
+
+.BbsCategoryTPage .c_list {
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+  padding: 10px 5px;
+}
+
+.BbsCategoryTPage .c_item {
+  border: 1px solid transparent;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  margin: 6px;
+  padding: 8px;
+}
+
+.BbsCategoryTPage .c_item:hover {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  -moz-transition: background-color 0.5s;
+	-webkit-transition: background-color 0.5s;
+	-ms-transition: background-color 0.5s;
+	transition: background-color 0.5s;
+}
+
+.BbsCategoryTPage .c_item .icon_b {
+  width: 42px;
+  height: 70px;
+  float: left;
+  background-repeat: no-repeat; 
+}
+
+.BbsCategoryTPage .c_item .icon_forum {
+  background-image: url("images/forum.png");
+  background-position: 0 5px;
+}
+
+.BbsCategoryTPage .c_item .l1 {
+  padding-left: 42px;
+  font-size: 10.5pt;
+}
+
+.BbsCategoryTPage .c_item .l1 sup {
+  margin-left: 1px;
+}
+
+.BbsCategoryTPage .c_item .l2,
+.BbsCategoryTPage .c_item .l3,
+.BbsCategoryTPage .c_item .l4 {
+  height: 20px;
+  line-height: 19px;
+  overflow: hidden;
+  color: #888;
+}
+
+/***************************************************/
+/*                     form                        */
+/***************************************************/
+
+.BbsTopicFormTPage .FormTableRowTemplatePage {
+  padding: 0;
+}
+
+.BbsTopicFormTPage .tool_bar {
+  padding: 8px 10px;
+  margin-bottom: 0;
+  background-color: #eee;
+}
+
+/***************************************************/
+/*                     topic                       */
+/***************************************************/
+.BbsTopicListTPage {
+}
+
+.BbsCategoryTPage .c_item,
+.BbsTopicListTPage .categoryTxt,
+.BbsTopicListTPage .userStat,
+.BbsTopicListTPage .imgBest,
+.BbsTopicListTPage .type_normal,
+.BbsTopicListTPage .type_ask,
+.BbsPostViewTPage .BbsPostContent .ask_post .b1,
+.BbsPostViewTPage .BbsPostContent .ask_post .b2 {
+  display: inline-block;
+  *display: inline;
+	*zoom: 1;
+}
+
+.BbsTopicListTPage .categoryTxt {
+  color: #888;
+  margin-right: 4px;
+}
+
+.BbsTopicListTPage .categoryTxt a {
+  color: #090;
+}
+
+.BbsTopicListTPage .categoryTxt a:hover {
+  color: #060;
+}
+
+.BbsTopicListTPage .categoryTxt,
+.BbsTopicListTPage .bbsTopic {
+  font-size: 9.5pt; 
+}
+
+.BbsTopicListTPage .userStat {
+  margin-left: 6px;
+  text-align: left;
+  vertical-align: middle;
+  color: #777;
+}
+
+.BbsTopicListTPage .userStat .us_1,
+.BbsTopicListTPage .userStat .us_2 {
+  display: block;
+  line-height: 17px;
+}
+
+.BbsTopicListTPage .type_normal,
+.BbsTopicListTPage .type_ask { 
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+.BbsTopicListTPage .type_normal,
+.menu_type_normal {
+  background-image: url("images/type_normal.png");
+}
+
+.BbsTopicListTPage .type_ask,
+.menu_type_ask {
+  background-image: url("images/type_ask.png");
+}
+
+.BbsTopicListTPage .imgBest {
+  background: url("images/best.png") no-repeat;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+}
+
+.BbsTopicListTPage .recommendation {
+  color: #e12;
+}
+
+.BbsTopicListTPage .recommendation:hover {
+  color: #b30;
+}
+
+.BbsTopicListTPage .lbl sup {
+  color: #f00;
+  left: 24px;
+  top: 10px;
+  position: absolute;
+}
+
+/***************************************************/
+/*                     post                        */
+/***************************************************/
+
+.BbsPostViewTPage .BbsTopic_stat .s1,
+.BbsPostViewTPage .BbsContent_Bar .span_btn_left,
+.BbsPostViewTPage .BbsContent_Bar .span_btn_right,
+#idBbsTopic_editor .edit_bar .reply_btn,
+#idBbsTopic_editor .edit_bar .delete_img,
+.bbs_down_chev {
+  display: inline-block;
+  *display: inline;
+	*zoom: 1;
+}
+
+.BbsPostViewTPage {
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+
+.BbsPostViewTPage .BbsTopic .topic {
+  font-size: 16pt;
+  color: #069;
+  font-weight: bold;
+  padding: 6px 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #bbb;
+  margin: -1px -1px 0;
+}
+
+.BbsPostViewTPage .BbsTopic_stat { 
+  border: 1px solid #ccc;
+  margin: -1px -1px 0 0;
+  background-color: #fafafa;
+}
+
+.BbsPostViewTPage .BbsTopic_stat .s1 {
+  border-right: 1px solid #ccc;
+  padding: 4px 12px;
+}
+
+.BbsPostViewTPage .BbsTopic_stat .lbl,
+.BbsPostViewTPage .BbsTopic_stat .val {
+  line-height: 22px;
+}
+
+.BbsPostViewTPage .BbsTopic_stat .val {
+  height: 24px;
+}
+
+.BbsPostViewTPage .BbsTopic_stat .photo_icon {
+  margin-right: 4px;
+}
+
+.BbsPostViewTPage .fixed_table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.BbsPostViewTPage .BbsUser {
+  width: 110px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.BbsPostViewTPage .BbsUser .name {
+  font-size: 9.5pt;
+  color: #666;
+}
+
+.BbsPostViewTPage .BbsUser .photo_icon {
+  margin: 8px 0;
+}
+
+.BbsPostViewTPage .BbsUser .stat {
+  margin-bottom: 4px;
+}
+
+.BbsPostViewTPage .BbsUser .stat td {
+  padding: 0 6px;
+  color: #888;
+}
+
+.BbsPostViewTPage .BbsUser .stat .fc {
+  border-right: 1px solid #aaa;
+}
+
+.BbsPostViewTPage .BbsUser .stat .l1 {
+  color: #a00;
+  font-family: Candara;
+  text-align: center;
+}
+
+.BbsPostViewTPage .BbsContent,
+.BbsPostViewTPage .ReplyFrom_c,
+#idBbsTopic_editor {
+  margin: -1px -1px 0 0;
+}
+
+.BbsPostViewTPage .BbsContent {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  padding: 15px 10px 20px;
+  position: relative;
+  line-height: 1.6;
+  font-size: 9.5pt;
+  min-height: 120px;
+}
+
+.BbsPostViewTPage .BbsTopicContent:before,
+.BbsPostViewTPage .BbsTopicContent:after,
+.BbsPostViewTPage .BbsPostContent:before,
+.BbsPostViewTPage .BbsPostContent:after {
+  border-color: transparent;
+  border-style: solid;
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.BbsPostViewTPage .BbsTopicContent:after,
+.BbsPostViewTPage .BbsPostContent:after {
+  border-right-color: #fff;
+  border-width: 9px 14px 9px 0;
+  left: -14px;
+  top: 25px;
+}
+
+.BbsPostViewTPage .BbsTopicContent:before,
+.BbsPostViewTPage .BbsPostContent:before {
+  border-right-color: #bbb;
+  border-width: 10px 15px 10px 0;
+  left: -15px;
+  top: 24px;
+}
+
+.BbsPostViewTPage .BbsTopicContent {
+  min-height: 200px;
+}
+
+.BbsPostItems .fixed_table {
+  margin-top: 8px;
+}
+
+.BbsPostViewTPage .BbsTopicContent .ask_icon {
+  height: 64px;
+  width: 64px;
+  float: right;
+  background: url("images/question64.png") no-repeat;
+  margin: 15px 0 15px 10px;
+}
+
+.BbsPostViewTPage .BbsContent .topb,
+.BbsPostViewTPage .ReplyFrom,
+.BbsPostViewTPage .BestAnswer {
+  position: absolute;
+  top: -2px;
+  font-size: 9pt;
+  cursor: pointer;
+  color: #fff;
+}
+
+.BbsPostViewTPage .BbsContent .topb a {
+  color: #fff;
+}
+
+.BbsPostViewTPage .BbsContent .topb a:hover {
+  color: #ffb;
+  text-decoration: none;
+}
+
+.BbsPostViewTPage .BbsContent .topb {
+  background-color: #789;
+  height: 24px;
+  line-height: 23px;
+  padding: 0 40px 0 10px;
+  right: -1px;
+  -moz-border-radius: 0 0 0 6px;
+  -webkit-border-radius: 0 0 0 6px;
+  border-radius: 0 0 0 6px;
+}
+
+.BbsPostViewTPage .ReplyFrom,
+.BbsPostViewTPage .BestAnswer,
+.BbsPostViewTPage .BbsPostContent .ask_post {
+  -moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
+
+.BbsPostViewTPage .ReplyFrom,
+.BbsPostViewTPage .BestAnswer {
+  height: 28px;
+  line-height: 27px;
+  left: 20px; 
+}
+
+.BbsPostViewTPage .ReplyFrom {
+  background-color: #987;
+  padding: 0 8px;
+}
+
+.BbsPostViewTPage .ReplyFrom:hover {
+  background-color: #ba9;
+}
+
+.BbsPostViewTPage .BestAnswer {
+  background-color: #900;
+  padding: 0 15px;
+  cursor: default;
+}
+
+.BbsPostViewTPage .BbsContent .topb:hover {
+  background-color: #9ab;
+}
+
+.BbsPostViewTPage .BbsContent .topb:hover,
+.BbsPostViewTPage .ReplyFrom:hover,
+.BbsPostViewTPage .BbsPostContent .ask_post:hover {
+  -moz-transition: all 1s;
+  -webkit-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+}
+
+.BbsPostViewTPage .BbsContent .favorite {
+  background: url("images/favorite.png") no-repeat;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 18px;
+  top: -4px;
+  cursor: pointer;
+}
+
+.BbsPostViewTPage .BbsContent .favorite sup {
+  margin-left: 12px;
+  margin-top: 8px;
+  color: #fff;
+}
+
+.BbsPostViewTPage .BbsContent .favorite_active,
+.BbsPostViewTPage .BbsContent .favorite:hover {
+  background-image: url("images/favorite2.png");
+}
+
+.BbsPostViewTPage .ReplyFrom_gap {
+  height: 12px;
+}
+
+.BbsPostViewTPage .ReplyFrom_c {
+  background-color: #fafafa;
+  color: #888;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  padding: 10px;
+}
+
+.BbsPostViewTPage .ReplyFrom_c .cc {
+  font-style: italic;
+}
+
+.BbsPostViewTPage .ReplyFrom_c .bb {
+  text-align: right;
+  margin: 0 -10px -10px;
+  padding: 4px 8px;
+}
+
+.BbsPostViewTPage .ReplyFrom .photo_icon {
+  margin: -2px 4px 0;
+  border-color: #fff;
+}
+
+.BbsPostViewTPage .BbsContent_Bar {
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #fefefe, #f9f9f9);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #fefefe, #f9f9f9);
+  background-image: -ms-linear-gradient(top, #f9f9f9, #fefefe, #f9f9f9);
+  background-image: linear-gradient(to bottom, #f9f9f9, #fefefe, #f9f9f9);
+  color: #999;
+  font-weight: bold;
+  margin-right: -1px;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .span_btn_left,
+.BbsPostViewTPage .BbsContent_Bar .span_btn_right {
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .num {
+  padding-right: 4px;
+  font-family: verdana;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .span_btn_right {
+  float: right;
+  border-left: 1px solid #ddd;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .span_btn_left {
+  float: left;
+  border-right: 1px solid #ddd;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .span_btn_right:hover,
+.BbsPostViewTPage .BbsContent_Bar .span_btn_left:hover {
+  background-color: #e6e6ff;
+  color: #999;
+  -moz-transition: all 1s;
+  -webkit-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .btn_delete {
+  padding: 0 4px;
+  width: 16px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: 4px 50%;
+}
+
+.BbsPostViewTPage .BbsContent_Bar .btn_delete {
+  background-image: url("images/delete.png");
+}
+
+.BbsPostViewTPage .BbsContent_Remark_List .rlist {
+  margin: 30px 0 0 50px;
+  font-size: 9pt;
+  border-top: 1px dashed #bbb;
+}
+
+.BbsPostViewTPage .BbsContent_Remark_List .ritem {
+  border-bottom: 1px dashed #bbb;
+  padding: 4px 4px 0 36px;
+  position: relative;
+}
+
+.BbsPostViewTPage .BbsContent_Remark_List .ritem .photo_icon {
+  left: 6px;
+  top: 8px;
+  position: absolute;
+}
+
+.BbsPostViewTPage .BbsContent_Remark_List .ritem .rbar {
+  text-align: right;
+  color: #888;
+}
+
+.BbsPostViewTPage .BbsContent_Remark_List .mbar {
+  text-align: center;
+  margin-top: 4px;
+}
+
+.BbsPostViewTPage .BbsPostContent .ask_post  {
+  padding: 0px 12px;
+  font-size: 9.5pt;
+  cursor: default;
+  background-color: #4cd;
+  color: #fff;
+  position: absolute;
+  top: -2px;
+  right: 20px;
+}
+
+.BbsPostViewTPage .BbsPostContent .ask_post:hover {
+  background-color: #5de;
+}
+
+.BbsPostViewTPage .BbsPostContent .ask_post .votes {
+  font-style: italic;
+  font-size: 14pt;
+  margin-right: 4px;
+}
+
+.VoteSubmitPage {
+  padding: 2px;
+}
+
+.VoteSubmitPage textarea {
+  width: 100%;
+  border: 0;
+  background-image: none;
+  overflow: hidden;
+}
+
+.UnVoteSubmitPage {
+  position: relative;  
+}
+
+.UnVoteSubmitPage .tt {
+  background: url("images/warn.png") no-repeat 15px 8px;
+  color: #a00;
+  font-size: 10.5pt;
+  font-weight: bold;
+  height: 74px;
+  line-height: 60px;
+  padding-left: 90px;
+}
+
+.VoteSubmitPage .bb,
+.UnVoteSubmitPage .bb {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: right;
+}
+
+.VoteSubmitPage .bb {
+  background-color: #eee;
+  border-top: 1px solid #999;
+  padding: 6px 10px;
+}
+
+.UnVoteSubmitPage .bb {
+  padding-right: 10px;
+}
+
+#idBbsTopic_editor .edit_bar {
+  padding: 8px 8px 4px 0;
+}
+
+#idBbsTopic_editor .bl {
+  float: left;
+}
+
+#idBbsTopic_editor .br {
+  float: right;
+}
+
+#idBbsTopic_editor .dcc {
+  font-style: italic;
+}
+
+#idBbsTopic_editor .reply_btn {
+  cursor: default;
+  padding: 0 6px;
+  height: 23px;
+  line-height: 22px;
+  background-color: #666;
+  color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#idBbsTopic_editor .reply_btn:hover {
+  border-color: #999;
+}
+
+#idBbsTopic_editor .delete_img {
+  width: 9px;
+  height: 9px;
+  background: url("images/delete2.png") no-repeat;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+#idBbsTopic_editor .reply_btn:hover .delete_img {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -moz-transition: all 0.6s;
+	-webkit-transition: all 0.6s;
+	-ms-transition: all 0.6s;
+	transition: all 0.6s;
+}
+
+#idBbsTopic_editor .cke_chrome {
+  -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	margin-bottom: -1px;
+}
+
+#idBbsTopic_editor .cke_bottom {
+  background-image: none;
+  background-color: #f9f9f9;
+  height: 9px;
+  padding-top: 0;
+}
+
+#idBbsTopic_editor .cke_bottom .cke_resizer {
+  margin-top: 1px;
+  margin-right: -6px;
+  border-width: 8px 8px 0 0;
+  border-right-color: #999;
+}
+
+.bbs_down_chev {
+  background: url("images/down_chev.png") no-repeat;
+  width: 9px;
+  height: 9px;
+  margin-left: 2px; 
+  cursor: pointer;
+}
+
+.BbsPostViewTPage .BbsContent_Bar,
+.BbsPostViewTPage .ReplyFrom,
+.BbsPostViewTPage .BestAnswer,
+.BbsPostViewTPage .BbsTopic_stat,
+.BbsPostViewTPage .ask_post {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

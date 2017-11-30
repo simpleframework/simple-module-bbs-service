@@ -1,0 +1,22 @@
+<div id="idBbsTopic_editor">
+  <table class="fixed_table" cellpadding="0">
+    <tr>
+      <td class="BbsUser">${page.toUserHTML(parameter, null)}</td>
+      <td valign="top">
+        <div class="edit_bar">
+          <div class="bl">
+            <input type="hidden" />
+            <span>
+              <span class="dcc">#(BbsPostViewTPage.24)</span>
+            </span>
+          </div>
+          <div class="br">
+            <a class="simple_btn simple_btn_all" onclick="$Actions['BbsPostViewTPage_submit']();">#(BbsPostViewTPage.1)</a>
+          </div>
+          <div class="clearfix"></div>
+        </div> <input type="hidden" name="topicId" value="${topic.id}" /> <textarea
+          id="idBbsPostViewTPage_editor" name="idBbsPostViewTPage_editor"></textarea>
+      </td>
+    </tr>
+  </table>
+</div>

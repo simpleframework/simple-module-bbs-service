@@ -7,29 +7,36 @@
     <artifactId>simple-projects-pom</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>simple-module-bbs-service</artifactId>
-  <version>${simple.module.bbs.service}</version>
-  
+  <artifactId>simple-module-bbs-web</artifactId>
+  <version>${simple.module.bbs.web}</version>
+
   <dependencies>
     <dependency>
       <groupId>net.simpleframework</groupId>
-      <artifactId>simple-module-common</artifactId>
+      <artifactId>simple-module-bbs-service</artifactId>
     </dependency>
 
     <dependency>
       <groupId>net.simpleframework</groupId>
-      <artifactId>simple-module-organization-service</artifactId>
+      <artifactId>simple-module-common-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>net.simpleframework</groupId>
+      <artifactId>simple-module-log-web</artifactId>
       <optional>true</optional>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.lucene</groupId>
-      <artifactId>lucene-queryparser</artifactId>
+      <groupId>net.simpleframework</groupId>
+      <artifactId>simple-module-favorite-web</artifactId>
+      <optional>true</optional>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.lucene</groupId>
-      <artifactId>lucene-analyzers-smartcn</artifactId>
+      <groupId>net.simpleframework</groupId>
+      <artifactId>simple-module-pdf-web</artifactId>
+      <optional>true</optional>
     </dependency>
   </dependencies>
 </project>
