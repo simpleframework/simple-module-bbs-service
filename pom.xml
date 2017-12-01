@@ -39,6 +39,12 @@
       <optional>true</optional>
     </dependency>
     
+    <dependency>
+      <groupId>net.simpleframework</groupId>
+      <artifactId>simple-module-organization-service</artifactId>
+      <optional>true</optional>
+    </dependency>
+    
     <!-- web容器包 -->
     <dependency>
       <groupId>javax.servlet</groupId>
