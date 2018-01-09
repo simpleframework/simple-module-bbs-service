@@ -724,9 +724,8 @@ public class BbsPostViewTPage extends AbstractBbsTPage {
 		// 按相关度
 		final ILuceneManager lService = service.getLuceneService();
 		lets.add(new Pagelet(new CategoryItem($m("BbsPostViewTPage.7")),
-				creator.create(pp,
-						lService.query(StringUtils.join(lService.getQueryTokens(topic.getTopic()), " "),
-								BbsTopic.class),
+				creator.create(pp, lService.query(null,
+						StringUtils.join(lService.getQueryTokens(topic.getTopic()), " "), BbsTopic.class),
 						new BbsListRowHandler() {
 							@Override
 							protected BbsTopic toBean(final Object o) {

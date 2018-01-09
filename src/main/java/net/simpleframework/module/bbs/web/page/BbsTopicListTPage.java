@@ -231,11 +231,10 @@ public class BbsTopicListTPage extends AbstractBbsTPage {
 		final String list = pp.getParameter("list");
 		return ElementList
 				.of(new SearchInput("AbstractBbsTPage_search")
-						.setOnSearchClick(
-								"$Actions.loc('"
-										+ HttpUtils.addParameters(getUrlsFactory().getUrl(pp,
-												BbsTopicListPage.class, (BbsCategory) null), "s=")
-										+ "' + encodeURIComponent($F('AbstractBbsTPage_search')))")
+						.setOnSearchClick("$Actions.loc('"
+								+ HttpUtils.addParameters(getUrlsFactory().getUrl(pp,
+										BbsTopicListPage.class, (BbsCategory) null), "s=")
+								+ "' + encodeURIComponent($F('AbstractBbsTPage_search')))")
 						.setOnAdvClick(
 								"$Actions['AbstractBbsTPage_SearchWindow']('"
 										+ AdvSearchPage.encodeRefererUrl(
@@ -284,7 +283,7 @@ public class BbsTopicListTPage extends AbstractBbsTPage {
 			final String s = cp.getLocaleParameter("s");
 			final IBbsTopicService service = bbsContext.getTopicService();
 			if (StringUtils.hasText(s)) {
-				return service.getLuceneService().query(s, BbsTopic.class);
+				return service.getLuceneService().query(null, s, BbsTopic.class);
 			}
 			final BbsCategory category = getCategory(cp);
 			if (category != null) {
