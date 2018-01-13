@@ -250,7 +250,8 @@ public class BbsTopicService extends AbstractContentService<BbsTopic>
 				obj = getBean(doc.get("id"));
 			}
 			return (obj != null && BeanUtils.getProperty(obj, "status") == EContentStatus.publish)
-					? obj : null;
+					? obj
+					: null;
 		}
 
 		@Override
